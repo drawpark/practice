@@ -1,7 +1,7 @@
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
 // --- 1. 이미지 데이터 ---
-// 요청하신 모든 이미지 URL을 카테고리별로 정리했습니다.
+// 요청하신 모든 이미지 URL을 카테고리별로 정리하고 통합했습니다.
 const images = {
     beans: [
         'https://images.unsplash.com/photo-1572491410294-7a38f711a6fa?w=200',
@@ -59,43 +59,19 @@ const images = {
     ],
     grid: {
         'Desserts & Foods': [
-            "https://images.unsplash.com/photo-1559715745-e1b33a271c8f?w=400",
-            "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400",
-            "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=400",
-            "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400",
-            "https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?w=400",
-            "https://images.unsplash.com/photo-1570194065650-2f276f46d38c?w=400"
+            "https://images.unsplash.com/photo-1559715745-e1b33a271c8f?w=400", "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400", "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=400", "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400", "https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?w=400", "https://images.unsplash.com/photo-1570194065650-2f276f46d38c?w=400"
         ],
         'Unique Interiors': [
-             "https://images.unsplash.com/photo-1590080665780-6b9c6d501f73?w=400",
-             "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400",
-             "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=400",
-             "https://images.unsplash.com/photo-1571501679680-de32f1e7aad4?w=400",
-             "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
-             "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=400"
+            "https://images.unsplash.com/photo-1590080665780-6b9c6d501f73?w=400", "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400", "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=400", "https://images.unsplash.com/photo-1571501679680-de32f1e7aad4?w=400", "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400", "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=400"
         ],
         'Terrace & Outdoor': [
-            "https://images.unsplash.com/photo-1542181961-9590d0c79dab?w=400",
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400",
-            "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400",
-            "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400",
-            "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=400",
-            "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=400"
+            "https://images.unsplash.com/photo-1542181961-9590d0c79dab?w=400", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400", "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400", "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400", "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=400", "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=400"
         ],
         'From Our Baristas': [
-            "https://images.unsplash.com/photo-1565689876693-9b5f499c9d47?w=400",
-            "https://images.unsplash.com/photo-1534778101976-62847782c213?w=400",
-            "https://images.unsplash.com/photo-1560717789-0ac7c58ac90a?w=400",
-            "https://images.unsplash.com/photo-1562059395-0ae2e4e6ad6a?w=400",
-            "https://images.unsplash.com/photo-1560684352-8497838da222?w=400",
-            "https://images.unsplash.com/photo-1569870499705-504a2566c56f?w=400"
+            "https://images.unsplash.com/photo-1565689876693-9b5f499c9d47?w=400", "https://images.unsplash.com/photo-1534778101976-62847782c213?w=400", "https://images.unsplash.com/photo-1560717789-0ac7c58ac90a?w=400", "https://images.unsplash.com/photo-1562059395-0ae2e4e6ad6a?w=400", "https://images.unsplash.com/photo-1560684352-8497838da222?w=400", "https://images.unsplash.com/photo-1569870499705-504a2566c56f?w=400"
         ],
         'More Moments': [
-            "https://images.unsplash.com/photo-1572119865084-43b2cbd63db8?w=400",
-            "https://images.unsplash.com/photo-1570968915860-54f5c8f1badd?w=400",
-            "https://images.unsplash.com/photo-1570996914361-86d12a9e6d70?w=400",
-            "https://images.unsplash.com/photo-1477763858572-cda7deaa9bc5?w=400",
-            "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400"
+            "https://images.unsplash.com/photo-1572119865084-43b2cbd63db8?w=400", "https://images.unsplash.com/photo-1570968915860-54f5c8f1badd?w=400", "https://images.unsplash.com/photo-1570996914361-86d12a9e6d70?w=400", "https://images.unsplash.com/photo-1477763858572-cda7deaa9bc5?w=400", "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400"
         ]
     }
 };
@@ -127,7 +103,18 @@ function setupHeaderAndMenu() {
 
 // --- 3. 동적 컨텐츠 생성 ---
 function populateContent() {
-    // 섹션 4: 스캐터 이미지 채우기
+    // 섹션 1: 히어로 카드 동적 생성
+    const cardStack = document.querySelector("#card-stack");
+    if(cardStack) {
+        images.drinks.forEach(url => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.style.backgroundImage = `url(${url})`;
+            cardStack.appendChild(card);
+        });
+    }
+
+    // 섹션 4: 스캐터 이미지 동적 생성
     const scatterContainer = document.querySelector("#scatter-container");
     if (scatterContainer) {
         const peopleAndBaristas = [...images.people, ...images.barista];
@@ -142,30 +129,24 @@ function populateContent() {
     // 섹션 5: 메뉴 그리드 동적 생성
     const gridTargetContainer = document.querySelector("#menu-grid-section .max-w-7xl");
     if(gridTargetContainer) {
-        // 기존에 하드코딩된 자식 요소들을 비웁니다.
-        while (gridTargetContainer.firstChild) {
-            gridTargetContainer.removeChild(gridTargetContainer.firstChild);
-        }
+        gridTargetContainer.innerHTML = ''; // 기존 컨텐츠 초기화
 
-        // images.grid 객체를 기반으로 섹션을 동적으로 생성합니다.
         for (const category in images.grid) {
-            // h3 제목 생성
             const title = document.createElement('h3');
             title.className = "font-serif-display text-3xl md:text-4xl text-left mb-8 border-b border-gray-700 pb-4";
             title.textContent = category;
-            gridTargetContainer.appendChild(title);
-
-            // grid-container div 생성
+            
             const gridContainer = document.createElement('div');
             gridContainer.className = "grid-container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-16";
             
-            // 각 이미지 아이템 생성
             images.grid[category].forEach(url => {
                 const item = document.createElement("div");
                 item.className = "grid-item group";
                 item.innerHTML = `<img src="${url}" alt="${category} image" class="w-full h-full object-cover">`;
                 gridContainer.appendChild(item);
             });
+
+            gridTargetContainer.appendChild(title);
             gridTargetContainer.appendChild(gridContainer);
         }
     }
@@ -173,7 +154,6 @@ function populateContent() {
 
 // --- 4. GSAP 애니메이션 설정 ---
 
-// 섹션 1: 히어로 & 3D 카드 스택
 function setupHeroSection() {
     const tl = gsap.timeline({
         scrollTrigger: {
@@ -203,7 +183,6 @@ function setupHeroSection() {
     tl.to(["#hero-title", "#hero-subtitle"], { opacity: 0, duration: 0.5 }, 0.5);
 }
 
-// 섹션 2: 커피 원두 클라우드
 function setupBeanSection() {
     const beanContainer = document.getElementById("bean-container");
     const beanCount = 50;
@@ -214,23 +193,18 @@ function setupBeanSection() {
         bean.style.backgroundImage = `url('${beanImages[Math.floor(Math.random() * beanImages.length)]}')`;
         beanContainer.appendChild(bean);
     }
-
     const beans = gsap.utils.toArray(".bean");
     const tl = gsap.timeline({ scrollTrigger: { trigger: "#bean-section", start: "top top", end: "bottom top", scrub: 1.5, pin: true } });
-
     beans.forEach(bean => gsap.set(bean, { x: gsap.utils.random(0, window.innerWidth), y: gsap.utils.random(0, window.innerHeight), scale: gsap.utils.random(0.5, 1.2), opacity: 0 }));
-
     tl.to(beans, { opacity: 1, stagger: 0.05, ease: "power2.out" })
       .fromTo("#bean-text", { opacity: 0, scale: 0.8, yPercent: 10 }, { opacity: 1, scale: 1, yPercent: 0, ease: "power3.out" }, "<")
       .to(beans, { x: window.innerWidth / 2, y: window.innerHeight / 2, scale: 0, opacity: 0, duration: 2, stagger: 0.02, ease: "power3.in" }, ">1.5")
       .to("#bean-text", { opacity: 0, scale: 0.8, yPercent: -10, ease: "power3.in" }, "<");
 }
 
-// 섹션 3: 가로 스크롤 갤러리 (원본 디테일 복원)
 function setupInteriorSection() {
     const horizontalSection = document.querySelector('.section-horizontal-container');
     if (!horizontalSection) return;
-    
     const mainTween = gsap.to(horizontalSection, {
         x: () => -(horizontalSection.scrollWidth - window.innerWidth),
         ease: "none",
@@ -242,19 +216,16 @@ function setupInteriorSection() {
             invalidateOnRefresh: true
         }
     });
-    
     const panels = gsap.utils.toArray('.section-horizontal-container .panel');
     panels.forEach((panel, i) => {
-        // 각 패널이 뷰에 들어올 때의 개별 애니메이션
         const animationConfig = [
             { selector: 'h2, p', vars: { x: -100, opacity: 0, stagger: 0.2 } },
             { selector: 'img', vars: { y: 100, opacity: 0, stagger: 0.2 } },
             { selector: 'h2', vars: { scale: 0.5, opacity: 0 } },
             { selector: 'img', vars: { scale: 0, rotate: 30, opacity: 0, stagger: 0.15 } },
             { selector: 'h2, p', vars: { x: 100, opacity: 0, stagger: 0.2 } },
-            { selector: 'img', vars: { y: (i)=>i*50-50, x: (i)=>i*25-25, rotate: (i)=>i*-10, opacity: 0 } }
+            { selector: 'img', vars: { y: (idx) => idx * 50 - 50, x: (idx) => idx * 25 - 25, rotate: (idx) => idx * -10, opacity: 0, stagger: 0.1 } }
         ];
-
         if (animationConfig[i]) {
             gsap.from(panel.querySelectorAll(animationConfig[i].selector), {
                 ...animationConfig[i].vars,
@@ -269,14 +240,11 @@ function setupInteriorSection() {
     });
 }
 
-// 섹션 4: 스캐터 이미지
 function setupPeopleSection() {
     const items = gsap.utils.toArray("#scatter-container .scatter-item");
     if (items.length === 0) return;
     const tl = gsap.timeline({ scrollTrigger: { trigger: "#people-section", pin: true, scrub: 1.5, start: "top top", end: "+=300%" } });
-
     items.forEach(item => gsap.set(item, { x: gsap.utils.random(-100, 100) + "vw", y: gsap.utils.random(-100, 100) + "vh", rotate: gsap.utils.random(-360, 360) }));
-
     tl.to(items, { x: "50vw", y: "50vh", xPercent: -50, yPercent: -50, rotate: 0, stagger: { each: 0.05, from: "random" }, ease: "power2.inOut" })
       .to(items, { x: () => gsap.utils.random(10, 90) + "vw", y: () => gsap.utils.random(10, 90) + "vh", rotate: () => gsap.utils.random(-45, 45), scale: 1.1, stagger: { each: 0.03, from: "random" }, ease: "power3.out" }, ">-0.5")
       .fromTo("#people-title", { scale: 3, opacity: 0 }, { scale: 1, opacity: 1, ease: "power3.out"}, "<0.5")
@@ -284,10 +252,7 @@ function setupPeopleSection() {
       .to(items, { x: "50vw", y: "150vh", opacity: 0, scale: 0.5, filter: "blur(20px)", stagger: { each: 0.03, from: "random" }, ease: "power2.in" });
 }
 
-// 섹션 5: 메뉴 그리드
 function setupMenuGridSection() {
-    // ScrollTrigger는 동적으로 생성된 .grid-container를 감지해야 하므로, refresh() 이후에 실행되거나 MatchMedia를 사용하는 것이 안정적입니다.
-    // 여기서는 ScrollTrigger.refresh()가 마지막에 호출되므로 괜찮습니다.
     gsap.utils.toArray('.grid-container').forEach((container) => {
         gsap.from(container.querySelectorAll('.grid-item'), {
             scrollTrigger: {
@@ -300,38 +265,34 @@ function setupMenuGridSection() {
     });
 }
 
-// 섹션 6: 외관 & 마무리
 function setupExteriorSection() {
     const tl = gsap.timeline({ scrollTrigger: { trigger: "#exterior-section", pin: true, scrub: 1, start: "top top", end: "+=250%" } });
-    
     gsap.set("#final-text-container", { opacity: 0, scale: 0.8 });
     gsap.set("#exterior-bg", { scale: 1.2 });
-
     tl.to("#exterior-bg", { scale: 1, ease: "none" });
-
     images.exterior.forEach(bg => {
         tl.to("#exterior-bg", { opacity: 0.3, duration: 0.5, onComplete: () => gsap.set("#exterior-bg", { backgroundImage: `url(${bg})` }) })
           .to("#exterior-bg", { opacity: 1, duration: 0.5 });
     });
-
     tl.to("#final-text-container", { opacity: 1, scale: 1, duration: 1, ease: "power3.out" }, ">-1");
-    
     const finalTitle = document.querySelector("#final-title");
     const text = "Your Moment Awaits";
-    tl.to(finalTitle, { text: { value: text, delimiter: "" }, duration: text.length * 0.1, ease: "none" });
+    if (finalTitle) {
+        tl.to(finalTitle, { text: { value: text, delimiter: "" }, duration: text.length * 0.1, ease: "none" });
+    }
 }
 
 // --- 5. 모든 기능 실행 ---
 window.addEventListener("load", () => {
-    setupHeaderAndMenu();
     populateContent();
+    setupHeaderAndMenu();
     
     // GSAP 애니메이션 설정
     setupHeroSection();
     setupBeanSection();
     setupInteriorSection();
     setupPeopleSection();
-    setupMenuGridSection(); // 동적 생성 후 호출
+    setupMenuGridSection();
     setupExteriorSection();
 
     // 모든 DOM 변경 및 애니메이션 설정 후 ScrollTrigger 재계산
