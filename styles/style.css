@@ -3,72 +3,41 @@
 /* ---------------------------------- */
 
 :root {
-    --bg-color: #FFF8F0; /* 따뜻한 크림색 배경 */
-    --text-color: #4A4A4A; /* 부드러운 검은색 텍스트 */
-    --accent-color: #C5A572; /* 우아한 금색/갈색 포인트 */
-    --card-bg: #FFFFFF;
-    --footer-bg: #5D4037; /* 깊은 갈색 푸터 */
+    --dark-bg: #1a1a1a;
+    --light-text: #f0f0f0;
+    --accent-color: #d4af37; /* Gold accent */
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    background-color: var(--dark-bg);
+    color: var(--light-text);
     font-family: 'Noto Sans KR', sans-serif;
-    overscroll-behavior: none;
-    overflow-x: hidden;
+    overscroll-behavior: none; /* 스크롤 끝에서 바운스 효과 제거 */
+    overflow-x: hidden; /* 가로 스크롤바 숨기기 */
 }
 
 .font-serif-display {
     font-family: 'Playfair Display', serif;
 }
 
+/* 텍스트 외곽선 효과 */
 .text-outline {
-    -webkit-text-stroke: 1px var(--text-color);
+    -webkit-text-stroke: 1px var(--light-text);
     color: transparent;
     transition: color 0.5s ease;
 }
+
 .text-outline:hover {
-    color: var(--text-color);
+    color: var(--light-text);
 }
+
 .text-shadow-lg {
-    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* ---------------------------------- */
-/* --- 1. 헤더 & 네비게이션 --- */
-/* ---------------------------------- */
-#main-header {
-    color: var(--light-text); /* 초기에는 어두운 배경 위이므로 밝은 텍스트 */
-    transition: background-color 0.4s ease, color 0.4s ease, backdrop-filter 0.4s ease;
-}
-#main-header.header-scrolled {
-    background-color: rgba(255, 248, 240, 0.8); /* 스크롤 시 반투명 크림 배경 */
-    backdrop-filter: blur(10px);
-    color: var(--text-color); /* 스크롤 시 어두운 텍스트 */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-#main-header.header-scrolled #logo {
-    color: var(--accent-color);
-}
-#main-header.header-scrolled .nav-link {
-     color: var(--text-color);
-}
-#main-header.header-scrolled .nav-link:hover {
-    color: var(--accent-color);
-}
-.nav-link {
-    transition: color 0.3s ease;
-}
-.nav-link:hover {
-    color: var(--accent-color);
-}
-.header-hidden {
-    transform: translateY(-100%);
+    text-shadow: 0 10px 15px rgba(0,0,0,0.5);
 }
 
 
 /* ---------------------------------- */
-/* --- 2. 섹션 레이아웃 --- */
+/* --- 1. 섹션 레이아웃 --- */
 /* ---------------------------------- */
 
 .section {
@@ -77,20 +46,27 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    overflow: hidden; /* 내부 요소가 밖으로 나가지 않도록 함 */
 }
+
 .section-full {
     height: 100vh;
 }
+
 .section-long {
-    height: 200vh;
+    height: 200vh; /* 스크롤 애니메이션을 위한 추가 공간 */
 }
+
+/* 가로 스크롤 컨테이너 */
 .section-horizontal-container {
+    /* HTML에 6개 패널이 있으므로 600vw */
     width: 600vw; 
     height: 100vh;
     display: flex;
     flex-wrap: nowrap;
 }
+
+/* 가로 스크롤 내부의 각 패널 */
 .panel {
     width: 100vw;
     height: 100vh;
@@ -104,17 +80,15 @@ body {
     padding: 5vw;
 }
 
+
 /* ---------------------------------- */
-/* --- 3. 히어로 & 3D 카드 스택 --- */
+/* --- 2. 히어로 & 3D 카드 스택 --- */
 /* ---------------------------------- */
 
 #hero-section {
-    perspective: 1000px;
-    background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 100%);
+    perspective: 1000px; /* 3D 효과를 위한 원근 설정 */
 }
-#hero-title, #hero-subtitle {
-    color: var(--light-text);
-}
+
 .card {
     position: absolute;
     width: 300px;
@@ -122,23 +96,22 @@ body {
     background-size: cover;
     background-position: center;
     border-radius: 1rem;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    will-change: transform;
-    border: 4px solid var(--card-bg);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    will-change: transform; /* 애니메이션 성능 최적화 */
+    border: 2px solid rgba(255, 255, 255, 0.1);
     transition: transform 0.5s, box-shadow 0.5s;
 }
+
 .card:hover {
-    transform: scale(1.05) !important;
-    box-shadow: 0 0 40px 10px rgba(212, 175, 55, 0.5);
+    transform: scale(1.05) !important; /* JS 애니메이션보다 우선 적용 */
+    box-shadow: 0 0 30px 5px var(--accent-color);
 }
 
+
 /* ---------------------------------- */
-/* --- 4. 커피 원두 클라우드 --- */
+/* --- 3. 커피 원두 클라우드 --- */
 /* ---------------------------------- */
 
-#bean-section {
-    background-color: #2d2d2d;
-}
 .bean {
     position: absolute;
     width: 80px;
@@ -150,12 +123,11 @@ body {
     will-change: transform, opacity;
 }
 
+
 /* ---------------------------------- */
-/* --- 5. 가로 스크롤 갤러리 (인테리어) --- */
+/* --- 4. 가로 스크롤 갤러리 (인테리어) --- */
 /* ---------------------------------- */
-#interior-section-wrapper {
-    background-color: var(--bg-color);
-}
+
 .gallery-image {
     width: 25vw;
     height: 35vw;
@@ -164,30 +136,27 @@ body {
     object-fit: cover;
     border-radius: 0.75rem;
     margin: 1vw;
-    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
     will-change: transform;
-    border: 4px solid white;
 }
+
+/* 패럴랙스 효과를 위한 배경 이미지 */
 .parallax-bg {
     position: absolute;
-    top: 0; left: 0;
-    width: 120%;
+    top: 0;
+    left: 0;
+    width: 120%; /* 좌우로 움직일 여백 확보 */
     height: 100%;
     background-size: cover;
     background-position: center;
     will-change: transform;
 }
 
+
 /* ---------------------------------- */
-/* --- 6. 스캐터 이미지 (사람들) --- */
+/* --- 5. 스캐터 이미지 (사람들) --- */
 /* ---------------------------------- */
 
-#people-section {
-    background-color: var(--bg-color);
-}
-#people-title.text-outline {
-    -webkit-text-stroke: 2px var(--text-color);
-}
 .scatter-item {
     position: absolute;
     width: 25vmin;
@@ -195,51 +164,19 @@ body {
     background-size: cover;
     background-position: center;
     border-radius: 0.5rem;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
     will-change: transform;
-    border: 3px solid white;
 }
 
-/* ---------------------------------- */
-/* --- 7. 정적 컨텐츠 (About, Reviews) --- */
-/* ---------------------------------- */
-
-.section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem; /* 40px */
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 4rem; /* 64px */
-    color: #3a3a3a;
-}
-.info-card {
-    background-color: #fdfcfa;
-    padding: 2rem; /* 32px */
-    border-radius: 0.75rem; /* 12px */
-    box-shadow: 0 10px 25px -10px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.info-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px -10px rgba(0,0,0,0.15);
-}
 
 /* ---------------------------------- */
-/* --- 8. 메뉴 그리드 --- */
+/* --- 6. 메뉴 그리드 --- */
 /* ---------------------------------- */
-#menu-grid-section {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-}
-#menu-grid-section h2, #menu-grid-section h3 {
-    color: #3a3a3a;
-}
-#menu-grid-section .border-b {
-    border-color: rgba(0,0,0,0.1);
-}
+
 .grid-item {
     will-change: transform, opacity;
 }
+
 .grid-item img {
     width: 100%;
     height: 100%;
@@ -247,28 +184,20 @@ body {
     transform: scale(1);
     transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+
 .grid-item:hover img {
     transform: scale(1.1);
 }
 
+
 /* ---------------------------------- */
-/* --- 9. 외관 & 마무리 --- */
+/* --- 7. 외관 & 마무리 --- */
 /* ---------------------------------- */
-#exterior-section {
-    background-color: #d1c7b8; /* Fallback background */
-}
+
 #exterior-bg {
     will-change: transform, background-image, opacity;
 }
+
 #final-text-container {
     will-change: opacity, transform;
-    color: var(--light-text);
 }
-
-/* ---------------------------------- */
-/* --- 10. 푸터 --- */
-/* ---------------------------------- */
-footer {
-    background-color: var(--footer-bg);
-}
-
