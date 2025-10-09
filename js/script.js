@@ -1,5 +1,10 @@
 // 페이지 로드 시 스크롤 위치를 최상단으로 강제합니다.
-history.scrollRestoration = 'manual';
+if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+}
+window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+};
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
@@ -176,7 +181,7 @@ function setupHeroSection() {
         scrollTrigger: {
             trigger: "#hero-section",
             start: "top top",
-            end: "bottom top", // Pin for the duration of one screen height
+            end: "+=100%", // Pin 지속 시간을 늘려 펼쳐진 상태를 더 오래 보여줍니다.
             scrub: 1.2,
             pin: true,
         }
@@ -196,26 +201,25 @@ function setupHeroSection() {
     gsap.from("#hero-subtitle", { duration: 1.5, y: 50, opacity: 0, ease: "power4.out", delay: 0.8 });
     gsap.from(cards, { duration: 1.5, scale: 0, opacity: 0, stagger: 0.1, ease: "power4.out", delay: 1.2 });
 
-    // 스크롤 시작 시 텍스트 페이드 아웃
+    // 스크롤 시작 시 텍스트와 비디오 페이드 아웃
     tl.to(["#hero-title", "#hero-subtitle"], { 
         opacity: 0, 
         duration: 0.4 
     }, 0);
-
-    // 스크롤에 따른 카드 펼치기 애니메이션
-    cards.forEach((card, i) => {
-        tl.to(card, {
-            x: (i - (cards.length - 1) / 2) * 80, // 중앙에서부터 카드를 펼칩니다.
-            rotateZ: (i - (cards.length - 1) / 2) * 5, // 약간의 회전을 추가합니다.
-            ease: "power1.inOut"
-        }, 0); // 스크롤 시작과 동시에 애니메이션을 시작합니다.
-    });
-
-    // 스크롤이 끝나기 전에 배경 비디오를 서서히 투명하게 만듭니다.
+    
     tl.to("#hero-video", {
         opacity: 0,
-        ease: "power1.in"
-    }, 0.5); // 애니메이션 중간 지점부터 비디오가 사라지기 시작합니다.
+        ease: "power1.inOut"
+    }, 0);
+
+    // 스크롤에 따른 카드 펼치기 애니메이션 (사라지지 않고 유지)
+    cards.forEach((card, i) => {
+        tl.to(card, {
+            x: (i - (cards.length - 1) / 2) * 80,
+            rotateZ: (i - (cards.length - 1) / 2) * 5,
+            ease: "power2.out"
+        }, 0);
+    });
 }
 
 function setupBeanSection() {
