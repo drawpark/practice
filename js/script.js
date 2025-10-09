@@ -1,13 +1,18 @@
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
 // --- 이미지 데이터 ---
-// 제공된 모든 이미지 링크를 카테고리별로 정리
 const images = {
+    // 🔔 [수정] 커피 원두 이미지 배열 추가
+    beans: [
+        'https://images.unsplash.com/photo-1572491410294-7a38f711a6fa?w=200',
+        'https://images.unsplash.com/photo-1599380816399-6a3f4a382b3a?w=200',
+        'https://images.unsplash.com/photo-1552346986-7e72a4ab1b54?w=200',
+        'https://images.unsplash.com/photo-1606891834379-33a41b559286?w=200',
+        'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=200'
+    ],
     drinks: [
-        'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400',
         'https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?w=400',
         'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400',
-        'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400',
         'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400',
         'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400',
         'https://images.unsplash.com/photo-1561047029-3000c68339ca?w=400',
@@ -17,38 +22,32 @@ const images = {
     ],
     interior: [
         'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400',
-        'https://images.unsplash.com/photo-1445116572260-236099ec97a0?w=400',
         'https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?w=400',
         'https://images.unsplash.com/photo-1571501679680-de32f1e7aad4?w=400',
         'https://images.unsplash.com/photo-1463797221720-6b07e6426c24?w=400',
         'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=400',
         'https://images.unsplash.com/photo-1516450364592-53a9ffa3e7a3?w=400',
-        'https://images.unsplash.com/photo-1587080413959-06b859fb1070?w=400',
-        'https://images.unsplash.com/photo-1590080665780-6b9c6d501f73?w=400',
-        'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400'
+        'https://images.unsplash.com/photo-1587080413959-06b859fb1070?w=400'
     ],
     people: [
         'https://images.unsplash.com/photo-1542838132-92c53300491e?w=400',
         'https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=400',
         'https://images.unsplash.com/photo-1521791055366-0d553872125f?w=400',
         'https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?w=400',
-        'https://images.unsplash.com/photo-1565688534245-05d6b5be184a?w=400',
-        'https://images.unsplash.com/photo-1498804103079-a6351b050096?w=400',
+        'https://images.unsplash.com/photo-1498804103079-a6351b050096?w=400'
     ],
     barista: [
         'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400',
         'https://images.unsplash.com/photo-1565689876693-9b5f499c9d47?w=400',
         'https://images.unsplash.com/photo-1534778101976-62847782c213?w=400',
         'https://images.unsplash.com/photo-1560717789-0ac7c58ac90a?w=400',
-        'https://images.unsplash.com/photo-1562059395-0ae2e4e6ad6a?w=400',
-        'https://images.unsplash.com/photo-1560684352-8497838da222?w=400',
-        'https://images.unsplash.com/photo-1569870499705-504a2566c56f?w=400',
+        'https://images.unsplash.com/photo-1562059395-0ae2e4e6ad6a?w=400'
     ],
     exterior: [
         'https://images.unsplash.com/photo-1571624436279-b272aff752b5?w=400',
         'https://images.unsplash.com/photo-1505275350441-83dcda8eeef5?w=400',
         'https://images.unsplash.com/photo-1464207687429-7505649dae38?w=400',
-        'https://images.unsplash.com/photo-1477763858572-cda7deaa9bc5?w=400',
+        'https://images.unsplash.com/photo-1477763858572-cda7deaa9bc5?w=400'
     ],
     grid: {
         desserts: [
@@ -118,7 +117,6 @@ function populateContent() {
     gridSections.forEach(section => {
         const container = document.querySelector(`#menu-grid-section ${section.selector}`);
         if(container) {
-             // 기존 플레이스홀더 비우기
             const placeholders = container.querySelectorAll('.grid-item');
             placeholders.forEach(p => p.remove());
             
@@ -151,7 +149,6 @@ function setupHeroSection() {
         transformOrigin: "center center"
     });
     
-    // Initial entrance animation (independent of scroll)
     gsap.from("#hero-title", { duration: 1.5, y: 100, opacity: 0, ease: "power4.out", delay: 0.5 });
     gsap.from("#hero-subtitle", { duration: 1.5, y: 50, opacity: 0, ease: "power4.out", delay: 0.8 });
     gsap.from(cards, {
@@ -163,10 +160,9 @@ function setupHeroSection() {
         delay: 1.2
     });
 
-    // Scroll-based 3D card stack animation
     cards.forEach((card, i) => {
         tl.to(card, {
-            z: i * 30, // 3D depth
+            z: i * 30,
             ease: "none"
         }, 0)
         .to(card, {
@@ -183,11 +179,19 @@ function setupHeroSection() {
 // --- 섹션 2: 커피 원두 클라우드 애니메이션 ---
 function setupBeanSection() {
     const beanContainer = document.getElementById("bean-container");
-    const beanCount = 50; // More beans for a fuller effect
+    const beanCount = 50;
+    
+    // 🔔 [수정] images.beans 배열 사용
+    const beanImages = images.beans; 
+
     for (let i = 0; i < beanCount; i++) {
         let bean = document.createElement("div");
         bean.className = "bean";
-        bean.style.backgroundImage = `url('https://images.unsplash.com/photo-1590080665780-6b9c6d501f73?w=200')`;
+
+        // 🔔 [수정] 배열에서 랜덤 이미지 URL 선택
+        const randomImageUrl = beanImages[Math.floor(Math.random() * beanImages.length)];
+        bean.style.backgroundImage = `url('${randomImageUrl}')`;
+        
         beanContainer.appendChild(bean);
     }
 
@@ -202,7 +206,6 @@ function setupBeanSection() {
         }
     });
 
-    // Set initial random positions
     beans.forEach(bean => {
         gsap.set(bean, {
             x: gsap.utils.random(0, window.innerWidth),
@@ -242,10 +245,8 @@ function setupInteriorSection() {
         }
     });
     
-    // Animate elements inside panels as they come into view
     const panels = gsap.utils.toArray('.section-horizontal-container .panel');
     panels.forEach((panel, i) => {
-        // First panel text
         if (i === 0) {
             gsap.from(panel.querySelector('h2, p'), {
                 x: -100, opacity: 0, stagger: 0.2,
@@ -256,7 +257,6 @@ function setupInteriorSection() {
                 }
             });
         }
-        // Parallax panel images
         if (i === 1) {
             gsap.from(panel.querySelectorAll('img'), {
                 y: 100, opacity: 0, stagger: 0.2,
@@ -267,7 +267,6 @@ function setupInteriorSection() {
                 }
             });
         }
-         // Third panel text
         if (i === 2) {
             gsap.from(panel.querySelector('h2'), {
                 scale: 0.5, opacity: 0,
@@ -278,8 +277,7 @@ function setupInteriorSection() {
                 }
             });
         }
-        // Fourth panel images
-         if (i === 3) {
+        if (i === 3) {
             gsap.from(panel.querySelectorAll('img'), {
                 scale: 0, rotate: 30, opacity: 0, stagger: 0.15,
                 scrollTrigger: {
@@ -289,8 +287,7 @@ function setupInteriorSection() {
                 }
             });
         }
-         // Fifth panel text
-         if (i === 4) {
+        if (i === 4) {
             gsap.from(panel.querySelector('h2, p'), {
                 x: 100, opacity: 0, stagger: 0.2,
                 scrollTrigger: {
@@ -300,8 +297,7 @@ function setupInteriorSection() {
                 }
             });
         }
-        // Sixth panel images (book cafe)
-         if (i === 5) {
+        if (i === 5) {
              gsap.from(panel.querySelectorAll('img'), {
                 y: (i) => i * 100 - 100, x: (i) => i * 50 - 50, rotate: (i) => i * -10, opacity: 0,
                 scrollTrigger: {
@@ -328,7 +324,6 @@ function setupPeopleSection() {
         }
     });
 
-    // 1. Images fly in from off-screen to the center
     items.forEach(item => {
         gsap.set(item, {
             x: gsap.utils.random(-100, 100) + "vw",
@@ -344,7 +339,6 @@ function setupPeopleSection() {
         stagger: { each: 0.05, from: "random" },
         ease: "power2.inOut"
     })
-    // 2. Spread out into an artistic collage
     .to(items, {
         x: () => gsap.utils.random(10, 90) + "vw",
         y: () => gsap.utils.random(10, 90) + "vh",
@@ -357,9 +351,8 @@ function setupPeopleSection() {
     tl.fromTo("#people-title", { scale: 3, opacity: 0 }, { scale: 1, opacity: 1, ease: "power3.out"}, "<0.5")
       .to("#people-title", { scale: 1.5, opacity: 0, ease: "power3.in"}, ">1");
       
-    // 3. Gather again and disappear
     tl.to(items, {
-        x: "50vw", y: "150vh", // Fly off screen downwards
+        x: "50vw", y: "150vh",
         opacity: 0,
         scale: 0.5,
         filter: "blur(20px)",
@@ -411,7 +404,6 @@ function setupExteriorSection() {
 
     tl.to("#exterior-bg", { scale: 1, ease: "none" });
 
-    // Smoothly transition through background images
     backgrounds.forEach((bg) => {
         tl.to("#exterior-bg", {
             opacity: 0.3,
@@ -425,7 +417,6 @@ function setupExteriorSection() {
 
     tl.to("#final-text-container", { opacity: 1, duration: 1 }, ">-1");
     
-    // Typing effect for the final title
     const finalTitle = document.querySelector("#final-title");
     const text = "Find Your Moment";
     tl.to(finalTitle, {
@@ -440,7 +431,7 @@ function setupExteriorSection() {
 
 // --- 모든 애니메이션 실행 ---
 window.addEventListener("load", () => {
-    populateContent(); // Must run first to create elements
+    populateContent();
     setupHeroSection();
     setupBeanSection();
     setupInteriorSection();
@@ -448,6 +439,5 @@ window.addEventListener("load", () => {
     setupMenuGridSection();
     setupExteriorSection();
 
-    // Refresh ScrollTrigger to ensure all calculations are correct after populating content
     ScrollTrigger.refresh();
 });
