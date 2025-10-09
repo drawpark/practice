@@ -61,7 +61,7 @@ header .nav-link:hover::after {
 /* --- 2. 섹션 레이아웃 --- */
 /* ---------------------------------- */
 /* GSAP Pinning을 위한 섹션 높이 설정 */
-#hero-section { min-height: 250vh; }
+#hero-section { min-height: 180vh; } /* 애니메이션 길이에 맞게 높이 축소 */
 #bean-section, #people-section, #exterior-section { min-height: 200vh; }
 
 #interior-section-wrapper {
@@ -215,3 +215,4 @@ header .nav-link:hover::after {
 
     /* 폰트 크기는 Tailwind CSS의 반응형 클래스(md:, lg:)가 처리합니다. */
 }
+
