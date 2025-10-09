@@ -1,162 +1,162 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cafe MAJI - A Vibe for Every Occasion</title>
-    
-    <!-- External Libraries & Fonts -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lora:wght@400;500;600&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe MAJI - A Vibe for Every Occasion</title>
+    
+    <!-- External Libraries & Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lora:wght@400;500;600&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-    <!-- External Stylesheet Link -->
-    <link rel="stylesheet" href="styles/style.css">
+    <!-- External Stylesheet Link -->
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body class="bg-[#1a1a1a] text-gray-200">
 
-    <!-- Header & Navigation -->
-    <header class="fixed top-0 w-full z-50 transition-all duration-300">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" id="logo" class="text-2xl font-bold transition-colors duration-300" style="font-family: 'Playfair Display', serif;">Cafe MAJI</a>
-            <div class="hidden md:flex items-center space-x-6">
-                <a href="#about-us" class="nav-link">About</a>
-                <a href="#menu" class="nav-link">Menu</a>
-                <a href="#gallery" class="nav-link">Gallery</a>
-            </div>
-            <button id="mobile-menu-button" class="md:hidden text-2xl transition-colors duration-300">
-                <i class="fas fa-bars"></i>
-            </button>
-        </nav>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 space-y-2 bg-black/80 backdrop-blur-sm rounded-b-lg shadow-lg">
-            <a href="#about-us" class="block py-2 px-3 hover:bg-gray-700 rounded">About</a>
-            <a href="#menu" class="block py-2 px-3 hover:bg-gray-700 rounded">Menu</a>
-            <a href="#gallery" class="block py-2 px-3 hover:bg-gray-700 rounded">Gallery</a>
-        </div>
-    </header>
+    <!-- Header & Navigation -->
+    <header class="fixed top-0 w-full z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" id="logo" class="text-2xl font-bold transition-colors duration-300" style="font-family: 'Playfair Display', serif;">Cafe MAJI</a>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#about-us" class="nav-link">About</a>
+                <a href="#menu" class="nav-link">Menu</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-2xl transition-colors duration-300">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 space-y-2 bg-black/80 backdrop-blur-sm rounded-b-lg shadow-lg">
+            <a href="#about-us" class="block py-2 px-3 hover:bg-gray-700 rounded">About</a>
+            <a href="#menu" class="block py-2 px-3 hover:bg-gray-700 rounded">Menu</a>
+            <a href="#gallery" class="block py-2 px-3 hover:bg-gray-700 rounded">Gallery</a>
+        </div>
+    </header>
 
-    <!-- Section 1: Hero & 3D Card Stack (Drinks) -->
-    <section id="hero-section" class="section">
-        <div class="sticky top-0 w-full h-screen flex flex-col justify-center items-center overflow-hidden">
-            <!-- Background video will be prepended here by JS -->
-            <h1 id="hero-title" class="font-serif-display text-6xl md:text-8xl lg:text-9xl z-10 text-shadow-lg text-amber-50">Welcome to MAJI</h1>
-            <p id="hero-subtitle" class="text-xl md:text-2xl mt-4 z-10">A cute, trendy, and classy cafe experience.</p>
-            <div id="card-stack" class="absolute w-full h-full" style="perspective: 1000px;">
-                <!-- Cards are dynamically populated by script.js -->
-            </div>
-        </div>
-    </section>
+    <!-- Section 1: Hero & 3D Card Stack (Drinks) -->
+    <section id="hero-section" class="section">
+        <div class="sticky top-0 w-full h-screen flex flex-col justify-center items-center overflow-hidden">
+            <!-- Background video will be prepended here by JS -->
+            <h1 id="hero-title" class="font-serif-display text-6xl md:text-8xl lg:text-9xl z-10 text-shadow-lg text-amber-50">Welcome to MAJI</h1>
+            <p id="hero-subtitle" class="text-xl md:text-2xl mt-4 z-10">A cute, trendy, and classy cafe experience.</p>
+            <div id="card-stack" class="absolute w-full h-full" style="perspective: 1000px;">
+                <!-- Cards are dynamically populated by script.js -->
+            </div>
+        </div>
+    </section>
 
-    <!-- Section 2: Coffee Bean Cloud -->
-    <section id="bean-section" class="section bg-black">
-        <div class="sticky top-0 w-full h-screen flex justify-center items-center">
-            <div id="bean-container" class="absolute w-full h-full"></div>
-            <div id="bean-text" class="relative z-10 text-center p-8">
-                 <h2 class="font-serif-display text-5xl md:text-8xl text-amber-100">The Soul of Coffee</h2>
-                 <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-300">Our story begins with a single, perfectly sourced bean, chosen to create your perfect moment.</p>
-            </div>
-        </div>
-    </section>
+    <!-- Section 2: Coffee Bean Cloud -->
+    <section id="bean-section" class="section bg-black">
+        <div class="sticky top-0 w-full h-screen flex justify-center items-center">
+            <div id="bean-container" class="absolute w-full h-full"></div>
+            <div id="bean-text" class="relative z-10 text-center p-8">
+                 <h2 class="font-serif-display text-5xl md:text-8xl text-amber-100">The Soul of Coffee</h2>
+                 <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-300">Our story begins with a single, perfectly sourced bean, chosen to create your perfect moment.</p>
+            </div>
+        </div>
+    </section>
 
-    <!-- Section 3: Horizontal Scroll Gallery (Interior) -->
-    <section id="interior-section-wrapper" class="relative bg-[#2a2a2a]">
-        <div class="section-horizontal-container">
-            <div class="panel justify-start items-center p-12">
-                <div class="max-w-md">
-                    <h2 class="font-serif-display text-5xl md:text-7xl">A Vibe for Every Occasion</h2>
-                    <p class="mt-6 text-lg">More than just coffee. We design spaces where your moments become art.</p>
-                </div>
-            </div>
-            <div class="panel">
-                <div class="relative w-full h-full">
-                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1554118811-1e0d_58224f24?w=1920&q=80');"></div>
-                    <img src="https://images.unsplash.com/photo-1559925333-a4e9a973c66f?w=600" class="absolute top-1/4 left-1/4 gallery-image w-1/4 h-auto transform -rotate-6">
-                    <img src="https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?w=600" class="absolute bottom-1/4 right-1/4 gallery-image w-1/3 h-auto transform rotate-3">
-                </div>
-            </div>
-            <div class="panel bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1463797221720-6b07e6426c24?w=1920&q=80');">
-                 <h2 class="font-serif-display text-5xl md:text-7xl max-w-lg bg-black/50 p-6 rounded-lg backdrop-blur-sm">Beauty in Details</h2>
-            </div>
-            <div class="panel items-start pt-24">
-                <div class="flex items-start justify-center space-x-8">
-                    <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=400" class="gallery-image transform translate-y-8 rotate-6">
-                    <img src="https://images.unsplash.com/photo-1516450364592-53a9ffa3e7a3?w=400" class="gallery-image transform -translate-y-12 -rotate-4">
-                    <img src="https://images.unsplash.com/photo-1587080413959-06b859fb1070?w=400" class="gallery-image transform translate-y-2 rotate-2">
-                </div>
-            </div>
-            <div class="panel justify-end items-end p-12 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1920&q=80')">
-                <div class="max-w-md text-right">
-                    <h2 class="font-serif-display text-5xl md:text-7xl text-shadow-lg">With a Good Book</h2>
-                    <p class="mt-6 text-lg bg-black/40 p-4 rounded">The perfect pause: a cup of coffee and a compelling story.</p>
-                </div>
-            </div>
-             <div class="panel">
-                <div class="flex items-center justify-center w-full h-full scale-110">
-                    <img src="https://images.unsplash.com/photo-1590080665780-6b9c6d_501f73?w=600" class="gallery-image w-1/5 transform -translate-x-1/2 -rotate-12">
-                    <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=600" class="gallery-image w-1/4 z-10 shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600" class="gallery-image w-1/5 transform translate-x-1/2 rotate-12">
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Section 3: Horizontal Scroll Gallery (Interior) -->
+    <section id="interior-section-wrapper" class="relative bg-[#2a2a2a]">
+        <div class="section-horizontal-container">
+            <div class="panel justify-start items-center p-12">
+                <div class="max-w-md">
+                    <h2 class="font-serif-display text-5xl md:text-7xl">A Vibe for Every Occasion</h2>
+                    <p class="mt-6 text-lg">More than just coffee. We design spaces where your moments become art.</p>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="relative w-full h-full">
+                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1554118811-1e0d_58224f24?w=1920&q=80');"></div>
+                    <img src="https://images.unsplash.com/photo-1559925333-a4e9a973c66f?w=600" class="absolute top-1/4 left-1/4 gallery-image w-1/4 h-auto transform -rotate-6">
+                    <img src="https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?w=600" class="absolute bottom-1/4 right-1/4 gallery-image w-1/3 h-auto transform rotate-3">
+                </div>
+            </div>
+            <div class="panel bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1463797221720-6b07e6426c24?w=1920&q=80');">
+                 <h2 class="font-serif-display text-5xl md:text-7xl max-w-lg bg-black/50 p-6 rounded-lg backdrop-blur-sm">Beauty in Details</h2>
+            </div>
+            <div class="panel items-start pt-24">
+                <div class="flex items-start justify-center space-x-8">
+                    <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=400" class="gallery-image transform translate-y-8 rotate-6">
+                    <img src="https://images.unsplash.com/photo-1516450364592-53a9ffa3e7a3?w=400" class="gallery-image transform -translate-y-12 -rotate-4">
+                    <img src="https://images.unsplash.com/photo-1587080413959-06b859fb1070?w=400" class="gallery-image transform translate-y-2 rotate-2">
+                </div>
+            </div>
+            <div class="panel justify-end items-end p-12 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1920&q=80')">
+                <div class="max-w-md text-right">
+                    <h2 class="font-serif-display text-5xl md:text-7xl text-shadow-lg">With a Good Book</h2>
+                    <p class="mt-6 text-lg bg-black/40 p-4 rounded">The perfect pause: a cup of coffee and a compelling story.</p>
+                </div>
+            </div>
+             <div class="panel">
+                <div class="flex items-center justify-center w-full h-full scale-110">
+                    <img src="https://images.unsplash.com/photo-1590080665780-6b9c6d_501f73?w=600" class="gallery-image w-1/5 transform -translate-x-1/2 -rotate-12">
+                    <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=600" class="gallery-image w-1/4 z-10 shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600" class="gallery-image w-1/5 transform translate-x-1/2 rotate-12">
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Section 4: Scatter Images (People) -->
-    <section id="people-section" class="section bg-black">
-        <div class="sticky top-0 w-full h-screen">
-            <h2 id="people-title" class="font-serif-display text-6xl md:text-9xl text-outline absolute z-20">The MAJI Vibe</h2>
-            <div id="scatter-container" class="absolute w-full h-full">
-                <!-- script.js populates this area -->
-            </div>
-        </div>
-    </section>
-    
-    <!-- Section 5: Menu/Gallery Grid -->
-    <section id="menu-grid-section" class="relative py-20 px-4 bg-[#111]">
-        <h2 id="gallery" class="font-serif-display text-5xl md:text-7xl text-center mb-16">Glimpse of Our Cafe</h2>
-        <div id="about-us" class="max-w-7xl mx-auto">
-            <!-- Grid sections are dynamically populated by script.js -->
-        </div>
-        <div class="text-center mt-12">
-             <a href="gallery.html" class="inline-block bg-amber-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-amber-700 transition-colors">View Full Gallery</a>
-        </div>
-    </section>
+    <!-- Section 4: Scatter Images (People) -->
+    <section id="people-section" class="section bg-black">
+        <div class="sticky top-0 w-full h-screen">
+            <h2 id="people-title" class="font-serif-display text-6xl md:text-9xl text-outline absolute z-20">The MAJI Vibe</h2>
+            <div id="scatter-container" class="absolute w-full h-full">
+                <!-- script.js populates this area -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section 5: Menu/Gallery Grid -->
+    <section id="menu-grid-section" class="relative py-20 px-4 bg-[#111]">
+        <h2 id="gallery" class="font-serif-display text-5xl md:text-7xl text-center mb-16">Glimpse of Our Cafe</h2>
+        <div id="about-us" class="max-w-7xl mx-auto">
+            <!-- Grid sections are dynamically populated by script.js -->
+        </div>
+        <div class="text-center mt-12">
+             <a href="gallery.html" class="inline-block bg-amber-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-amber-700 transition-colors">View Full Gallery</a>
+        </div>
+    </section>
 
-    <!-- Section 6: Exterior & Outro -->
-    <section id="exterior-section" class="section">
-        <div class="sticky top-0 w-full h-screen flex justify-center items-center">
-            <div id="exterior-bg" class="absolute w-full h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1571624436279-b272aff752b5?w=1920&q=80');"></div>
-            <div id="final-text-container" class="relative z-10 text-center bg-black/60 p-8 rounded-xl backdrop-blur-md">
-                <h2 id="final-title" class="font-serif-display text-4xl md:text-6xl text-amber-100"></h2>
-                <p id="final-subtitle" class="mt-4 text-lg">Find your new favorite spot.</p>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer id="menu" class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-6 text-center">
-            <p class="font-serif-display font-bold text-2xl mb-2 text-amber-300">Cafe MAJI</p>
-            <p class="text-gray-400">12232 Artesia Blvd, Artesia, CA 90701</p>
-            <p class="text-gray-400">(562) 281-9511</p>
-            <div class="mt-6 text-2xl space-x-6">
-                <a href="#" class="hover:text-amber-300 transition-colors"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="hover:text-amber-300 transition-colors"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.yelp.com/biz/cafe-maji-artesia" target="_blank" class="hover:text-amber-300 transition-colors"><i class="fab fa-yelp"></i></a>
-            </div>
-            <p class="mt-8 text-sm text-gray-500">&copy; 2025 Cafe MAJI. All Rights Reserved.</p>
-        </div>
-    </footer>
+    <!-- Section 6: Exterior & Outro -->
+    <section id="exterior-section" class="section">
+        <div class="sticky top-0 w-full h-screen flex justify-center items-center">
+            <div id="exterior-bg" class="absolute w-full h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1571624436279-b272aff752b5?w=1920&q=80');"></div>
+            <div id="final-text-container" class="relative z-10 text-center bg-black/60 p-8 rounded-xl backdrop-blur-md">
+                <h2 id="final-title" class="font-serif-display text-4xl md:text-6xl text-amber-100"></h2>
+                <p id="final-subtitle" class="mt-4 text-lg">Find your new favorite spot.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer id="menu" class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="font-serif-display font-bold text-2xl mb-2 text-amber-300">Cafe MAJI</p>
+            <p class="text-gray-400">12232 Artesia Blvd, Artesia, CA 90701</p>
+            <p class="text-gray-400">(562) 281-9511</p>
+            <div class="mt-6 text-2xl space-x-6">
+                <a href="#" class="hover:text-amber-300 transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-amber-300 transition-colors"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.yelp.com/biz/cafe-maji-artesia" target="_blank" class="hover:text-amber-300 transition-colors"><i class="fab fa-yelp"></i></a>
+            </div>
+            <p class="mt-8 text-sm text-gray-500">&copy; 2025 Cafe MAJI. All Rights Reserved.</p>
+        </div>
+    </footer>
 
-    <!-- GSAP Animation Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+    <!-- GSAP Animation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
 
-    <!-- Your Custom JavaScript File -->
-    <script src="js/script.js" defer></script>
+    <!-- Your Custom JavaScript File -->
+    <script src="js/script.js" defer></script>
 
 </body>
 </html>
