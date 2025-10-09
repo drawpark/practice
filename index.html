@@ -16,26 +16,26 @@
 </head>
 <body>
 
-    <!-- 섹션 1: 히어로 & 3D 카드 스택 -->
+    <!-- 섹션 1: 히어로 & 3D 카드 스택 (음료) -->
     <section id="hero-section" class="section section-long">
         <div class="sticky top-0 w-full h-screen flex flex-col justify-center items-center">
             <h1 id="hero-title" class="font-serif-display text-6xl md:text-9xl z-10 text-shadow-lg">Art of Moments</h1>
             <p id="hero-subtitle" class="text-xl md:text-2xl mt-4 z-10">A cup of coffee is a moment of art.</p>
             <div id="card-stack" class="absolute w-full h-full">
-                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600');"></div>
-                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?w=600');"></div>
-                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600');"></div>
-                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600');"></div>
-                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600');"></div>
+                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400');"></div>
+                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?w=400');"></div>
+                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400');"></div>
+                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400');"></div>
+                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400');"></div>
             </div>
         </div>
     </section>
 
-    <!-- 섹션 2: 커피 원두 클라우드 -->
+    <!-- 섹션 2: 커피 원두 클라우드 (커피 디테일) -->
     <section id="bean-section" class="section section-long bg-black">
          <div class="sticky top-0 w-full h-screen">
             <div id="bean-container" class="absolute w-full h-full"></div>
-            <div id="bean-text" class="relative z-10 text-center">
+            <div id="bean-text" class="relative z-10 text-center p-8">
                  <h2 class="font-serif-display text-5xl md:text-8xl">The Perfect Bean</h2>
                  <p class="mt-4 max-w-2xl mx-auto text-lg">최고의 순간을 위해, 세계 각지에서 엄선된 단 하나의 원두로부터 우리의 이야기는 시작됩니다.</p>
             </div>
@@ -43,7 +43,7 @@
     </section>
 
     <!-- 섹션 3: 가로 스크롤 갤러리 (인테리어) -->
-    <section id="interior-section-wrapper" class="relative h-screen w-full">
+    <section id="interior-section-wrapper" class="relative h-screen w-full bg-[#2a2a2a]">
         <div class="section-horizontal-container">
             <div class="panel justify-start items-center p-12">
                  <div class="max-w-md">
@@ -61,11 +61,11 @@
              <div class="panel" style="background-image: url('https://images.unsplash.com/photo-1463797221720-6b07e6426c24?w=1920&q=80');">
                  <h2 class="font-serif-display text-5xl md:text-7xl max-w-lg bg-black/50 p-6 rounded-lg backdrop-blur-sm">디테일의 아름다움</h2>
             </div>
-            <div class="panel">
-                <div class="flex items-center justify-center space-x-8">
-                    <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=600" class="gallery-image transform translate-y-8 rotate-6">
-                    <img src="https://images.unsplash.com/photo-1516450364592-53a9ffa3e7a3?w=600" class="gallery-image transform -translate-y-12 -rotate-4">
-                    <img src="https://images.unsplash.com/photo-1587080413959-06b859fb1070?w=600" class="gallery-image transform translate-y-2 rotate-2">
+            <div class="panel items-start pt-24">
+                <div class="flex items-start justify-center space-x-8">
+                    <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=400" class="gallery-image transform translate-y-8 rotate-6">
+                    <img src="https://images.unsplash.com/photo-1516450364592-53a9ffa3e7a3?w=400" class="gallery-image transform -translate-y-12 -rotate-4">
+                    <img src="https://images.unsplash.com/photo-1587080413959-06b859fb1070?w=400" class="gallery-image transform translate-y-2 rotate-2">
                 </div>
             </div>
         </div>
@@ -76,12 +76,20 @@
         <div class="sticky top-0 w-full h-screen">
             <h2 id="people-title" class="font-serif-display text-6xl md:text-9xl text-outline absolute z-20">The Vibe</h2>
             <div id="scatter-container" class="absolute w-full h-full">
-                <!-- JavaScript로 이미지 생성 -->
+                <!-- JavaScript will populate this with images from the 'People' category -->
             </div>
         </div>
     </section>
+    
+    <!-- 섹션 5: 메뉴 그리드 (신규 추가된 섹션) -->
+    <section id="menu-grid-section" class="relative py-20 px-4 bg-[#111]">
+        <h2 class="font-serif-display text-5xl md:text-7xl text-center mb-16">More Moments</h2>
+        <div class="grid-container max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <!-- JavaScript will populate this with a large number of images -->
+        </div>
+    </section>
 
-    <!-- 섹션 5: 외관 & 마무리 -->
+    <!-- 섹션 6: 외관 & 마무리 -->
     <section id="exterior-section" class="section section-long">
         <div class="sticky top-0 w-full h-screen">
             <div id="exterior-bg" class="absolute w-full h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1571624436279-b272aff752b5?w=1920&q=80');"></div>
