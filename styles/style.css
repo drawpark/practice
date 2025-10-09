@@ -2,31 +2,31 @@
 /* --- 0. 기본 & 전역 스타일 --- */
 /* ---------------------------------- */
 :root {
-  --dark-bg: #1a1a1a;
-  --light-text: #f1f1f1;
-  --accent-color-light: #f59e0b; /* amber-500 */
-  --accent-color-dark: #b45309; /* amber-700 */
+  --dark-bg: #1a1a1a;
+  --light-text: #f1f1f1;
+  --accent-color-light: #f59e0b; /* amber-500 */
+  --accent-color-dark: #b45309; /* amber-700 */
 }
 
 body {
-  background-color: var(--dark-bg);
-  color: var(--light-text);
-  font-family: 'Lora', 'Noto Sans KR', serif;
-  overscroll-behavior-y: none; /* 스크롤 끝에서 바운스 효과 제거 */
-  overflow-x: hidden;
+  background-color: var(--dark-bg);
+  color: var(--light-text);
+  font-family: 'Lora', 'Noto Sans KR', serif;
+  overscroll-behavior-y: none; /* 스크롤 끝에서 바운스 효과 제거 */
+  overflow-x: hidden;
 }
 
 .font-serif-display {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Playfair Display', serif;
 }
 
 .text-shadow-lg {
-  text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
 }
 
 .text-outline {
-  -webkit-text-stroke: 1px var(--light-text);
-  color: transparent;
+  -webkit-text-stroke: 1px var(--light-text);
+  color: transparent;
 }
 
 
@@ -34,26 +34,26 @@ body {
 /* --- 1. 헤더 & 네비게이션 --- */
 /* ---------------------------------- */
 header .nav-link {
-    position: relative;
-    transition: color 0.3s ease;
+    position: relative;
+    transition: color 0.3s ease;
 }
 
 header .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--accent-color-light);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent-color-light);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 header .nav-link:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
 
@@ -61,29 +61,29 @@ header .nav-link:hover::after {
 /* --- 2. 섹션 레이아웃 --- */
 /* ---------------------------------- */
 /* GSAP Pinning을 위한 섹션 높이 설정 */
-#hero-section { min-height: 180vh; } /* 애니메이션 길이에 맞게 높이 축소 */
+/* #hero-section의 min-height를 제거하여 불필요한 공백 문제를 해결했습니다. */
 #bean-section, #people-section, #exterior-section { min-height: 200vh; }
 
 #interior-section-wrapper {
-  height: 100vh;
-  overflow: hidden; /* JS가 x축 스크롤을 제어하므로 필수 */
+  height: 100vh;
+  overflow: hidden; /* JS가 x축 스크롤을 제어하므로 필수 */
 }
 
 .section-horizontal-container {
-  display: flex;
-  width: 600%; /* 6개의 패널 */
-  height: 100%;
+  display: flex;
+  width: 600%; /* 6개의 패널 */
+  height: 100%;
 }
 
 .panel {
-  width: 100vw;
-  height: 100vh;
-  flex-shrink: 0; /* 패널이 줄어들지 않도록 설정 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  padding: 2rem;
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0; /* 패널이 줄어들지 않도록 설정 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 2rem;
 }
 
 
@@ -91,14 +91,14 @@ header .nav-link:hover::after {
 /* --- 3. 히어로 & 3D 카드 스택 --- */
 /* ---------------------------------- */
 #card-stack .card {
-  position: absolute;
-  width: 300px;
-  height: 450px;
-  background-size: cover;
-  background-position: center;
-  border-radius: 1rem;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  will-change: transform, opacity; /* 애니메이션 성능 최적화 */
+  position: absolute;
+  width: 300px;
+  height: 450px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  will-change: transform, opacity; /* 애니메이션 성능 최적화 */
 }
 
 
@@ -106,29 +106,29 @@ header .nav-link:hover::after {
 /* --- 4. 커피 원두 클라우드 --- */
 /* ---------------------------------- */
 #bean-section {
-  position: relative;
-  overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 
 #bean-container .bean {
-  position: absolute;
-  width: 40px;
-  height: 55px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 50%;
-  opacity: 0;
-  will-change: transform, opacity;
+  position: absolute;
+  width: 40px;
+  height: 55px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+  opacity: 0;
+  will-change: transform, opacity;
 }
 
 #bean-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  will-change: transform, opacity;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  will-change: transform, opacity;
 }
 
 
@@ -136,10 +136,10 @@ header .nav-link:hover::after {
 /* --- 5. 가로 스크롤 갤러리 --- */
 /* ---------------------------------- */
 .gallery-image {
-  border-radius: 0.75rem;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  max-width: 400px;
-  will-change: transform, opacity;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  max-width: 400px;
+  will-change: transform, opacity;
 }
 
 
@@ -147,21 +147,21 @@ header .nav-link:hover::after {
 /* --- 6. 스캐터 이미지 --- */
 /* ---------------------------------- */
 #scatter-container .scatter-item {
-  position: absolute;
-  width: 250px;
-  height: 350px;
-  background-size: cover;
-  background-position: center;
-  border-radius: 1rem;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-  will-change: transform;
+  position: absolute;
+  width: 250px;
+  height: 350px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 1rem;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+  will-change: transform;
 }
 
 #people-title {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  will-change: transform, opacity;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  will-change: transform, opacity;
 }
 
 
@@ -169,18 +169,18 @@ header .nav-link:hover::after {
 /* --- 7. 메뉴/갤러리 그리드 --- */
 /* ---------------------------------- */
 .grid-item {
-    overflow: hidden;
-    border-radius: 0.5rem;
+    overflow: hidden;
+    border-radius: 0.5rem;
 }
 .grid-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease-in-out;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
 }
 
 .grid-item.group:hover img {
-  transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 
@@ -188,7 +188,7 @@ header .nav-link:hover::after {
 /* --- 8. 외관 & 마무리 --- */
 /* ---------------------------------- */
 #exterior-bg, #final-text-container {
-    will-change: opacity, transform;
+    will-change: opacity, transform;
 }
 
 
@@ -196,22 +196,22 @@ header .nav-link:hover::after {
 /* --- 9. 모바일 반응형 쿼리 --- */
 /* ---------------------------------- */
 @media (max-width: 767px) {
-    /* 히어로 카드 크기 줄이기 */
-    #card-stack .card {
-      width: 200px;
-      height: 300px;
-    }
+    /* 히어로 카드 크기 줄이기 */
+    #card-stack .card {
+      width: 200px;
+      height: 300px;
+    }
 
-    /* 수평 스크롤 패널 패딩 줄이기 */
-    .panel {
-        padding: 2rem;
-    }
+    /* 수평 스크롤 패널 패딩 줄이기 */
+    .panel {
+        padding: 2rem;
+    }
 
-    /* 스캐터 아이템 크기 줄이기 */
-    #scatter-container .scatter-item {
-        width: 180px;
-        height: 250px;
-    }
+    /* 스캐터 아이템 크기 줄이기 */
+    #scatter-container .scatter-item {
+        width: 180px;
+        height: 250px;
+    }
 
-    /* 폰트 크기는 Tailwind CSS의 반응형 클래스(md:, lg:)가 처리합니다. */
+    /* 폰트 크기는 Tailwind CSS의 반응형 클래스(md:, lg:)가 처리합니다. */
 }
