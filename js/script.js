@@ -70,7 +70,7 @@ const images = {
             "https://images.unsplash.com/photo-1559715745-e1b33a271c8f?w=400", "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400", "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=400", "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400", "https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?w=400", "https://images.unsplash.com/photo-1570194065650-2f276f46d38c?w=400"
         ],
         'Unique Interiors': [
-            "https://images.unsplash.com/photo-1590080665780-6b9c6d501f73?w=400", "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400", "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=400", "https://images.unsplash.com/photo-1571501679680-de32f1e7aad4?w=400", "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400", "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=400"
+            "https://images.unsplash.com/photo-1590080665780-6b9c6d_501f73?w=400", "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400", "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=400", "https://images.unsplash.com/photo-1571501679680-de32f1e7aad4?w=400", "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400", "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=400"
         ],
         'Terrace & Outdoor': [
             "https://images.unsplash.com/photo-1542181961-9590d0c79dab?w=400", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400", "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400", "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400", "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=400", "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=400"
@@ -216,8 +216,8 @@ function setupHeroSection() {
             }, 0);
         });
 
-        // 스크롤 후반부에 텍스트와 카드가 함께 사라지며 부드러운 전환 효과 생성
-        tl.to(["#hero-title", "#hero-subtitle", cards], {
+        // [수정] 스크롤 후반부에 텍스트만 사라지도록 변경하여 카드는 남아있게 합니다.
+        tl.to(["#hero-title", "#hero-subtitle"], {
             opacity: 0,
             y: isDesktop ? -100 : -50,
             stagger: 0.05,
@@ -347,3 +347,4 @@ document.addEventListener("DOMContentLoaded", () => {
         ScrollTrigger.refresh();
     }, 100);
 });
+
