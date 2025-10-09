@@ -1,0 +1,115 @@
+:root {
+    --dark-bg: #1a1a1a;
+    --light-text: #f0f0f0;
+    --accent-color: #d4af37; /* Gold accent */
+}
+body {
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    font-family: 'Noto Sans KR', sans-serif;
+    overscroll-behavior: none;
+    overflow-x: hidden;
+}
+.font-serif-display {
+    font-family: 'Playfair Display', serif;
+}
+.section {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.section-full {
+    height: 100vh;
+}
+.section-long {
+    height: 200vh;
+}
+.section-horizontal-container {
+    width: 400vw; /* 4개 패널의 가로 스크롤 공간 */
+    height: 100vh;
+    display: flex;
+    flex-wrap: nowrap;
+}
+.panel {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    padding: 5vw;
+}
+.text-outline {
+    -webkit-text-stroke: 1px var(--light-text);
+    color: transparent;
+    transition: color 0.5s ease;
+}
+.text-outline:hover {
+    color: var(--light-text);
+}
+/* Hero Section 3D Card Stack */
+#hero-section {
+    perspective: 1000px;
+}
+.card {
+    position: absolute;
+    width: 300px;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 1rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    will-change: transform;
+    border: 2px solid rgba(255,255,255,0.2);
+    transition: transform 0.5s, box-shadow 0.5s;
+}
+.card:hover {
+    transform: scale(1.05) !important;
+    box-shadow: 0 0 30px 5px var(--accent-color);
+}
+/* Bean Cloud Section */
+.bean {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+/* Horizontal Scroll Gallery */
+.gallery-image {
+    width: 25vw;
+    height: 35vw;
+    max-width: 400px;
+    max-height: 600px;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    margin: 1vw;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+.parallax-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 120%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+/* Scatter Section */
+.scatter-item {
+    position: absolute;
+    width: 25vmin;
+    height: 35vmin;
+    background-size: cover;
+    background-position: center;
+    border-radius: 0.5rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    will-change: transform;
+}
