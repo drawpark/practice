@@ -116,7 +116,7 @@ function populateContent() {
         // 배경 비디오 생성 및 추가
         const video = document.createElement('video');
         video.id = 'hero-video';
-        video.src = 'https://videos.pexels.com/video-files/4782054/4782054-hd_1920_1080_25fps.mp4';
+        video.src = 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4';
         video.autoplay = true;
         video.loop = true;
         video.muted = true;
@@ -177,48 +177,49 @@ function populateContent() {
 // --- 4. GSAP 애니메이션 설정 ---
 
 function setupHeroSection() {
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: "#hero-section",
-            start: "top top",
-            end: "+=100%", // Pin 지속 시간을 늘려 펼쳐진 상태를 더 오래 보여줍니다.
-            scrub: 1.2,
-            pin: true,
-        }
-    });
-
     const cards = gsap.utils.toArray("#card-stack .card");
-    gsap.set(cards, { 
-        top: "50%", 
-        left: "50%", 
-        xPercent: -50, 
-        yPercent: -50, 
-        transformOrigin: "center center" 
-    });
     
     // 페이지 로드 시 진입 애니메이션
     gsap.from("#hero-title", { duration: 1.5, y: 100, opacity: 0, ease: "power4.out", delay: 0.5 });
     gsap.from("#hero-subtitle", { duration: 1.5, y: 50, opacity: 0, ease: "power4.out", delay: 0.8 });
     gsap.from(cards, { duration: 1.5, scale: 0, opacity: 0, stagger: 0.1, ease: "power4.out", delay: 1.2 });
 
-    // 스크롤 시작 시 텍스트와 비디오 페이드 아웃
-    tl.to(["#hero-title", "#hero-subtitle"], { 
-        opacity: 0, 
-        duration: 0.4 
-    }, 0);
-    
-    tl.to("#hero-video", {
-        opacity: 0,
-        ease: "power1.inOut"
-    }, 0);
+    gsap.matchMedia().add({
+        // 데스크톱 애니메이션
+        isDesktop: `(min-width: 768px)`,
+        // 모바일 애니메이션
+        isMobile: `(max-width: 767px)`
+    }, (context) => {
+        let { isDesktop, isMobile } = context.conditions;
 
-    // 스크롤에 따른 카드 펼치기 애니메이션 (사라지지 않고 유지)
-    cards.forEach((card, i) => {
-        tl.to(card, {
-            x: (i - (cards.length - 1) / 2) * 80,
-            rotateZ: (i - (cards.length - 1) / 2) * 5,
-            ease: "power2.out"
-        }, 0);
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#hero-section",
+                start: "top top",
+                end: "+=150%", // Pin 시간을 늘려 애니메이션이 끝날 충분한 공간 확보
+                scrub: 1.2,
+                pin: true,
+            }
+        });
+
+        tl.to("#hero-video", { opacity: 0, ease: "power1.inOut" }, 0);
+        
+        cards.forEach((card, i) => {
+            const spread = isDesktop ? 80 : 40; // 화면 크기에 따라 펼쳐지는 거리 조절
+            tl.to(card, {
+                x: (i - (cards.length - 1) / 2) * spread,
+                rotateZ: (i - (cards.length - 1) / 2) * 5,
+                ease: "power2.out"
+            }, 0);
+        });
+
+        // 스크롤 후반부에 텍스트와 카드가 함께 사라지며 부드러운 전환 효과 생성
+        tl.to(["#hero-title", "#hero-subtitle", cards], {
+            opacity: 0,
+            y: isDesktop ? -100 : -50,
+            stagger: 0.05,
+            ease: "power2.in"
+        }, 0.6); // 타임라인의 60% 지점에서 사라지기 시작
     });
 }
 
@@ -322,7 +323,7 @@ function setupExteriorSection() {
 }
 
 // --- 5. 모든 기능 실행 ---
-window.addEventListener("load", () => {
+document.addEventListener("DOMContentLoaded", () => {
     // 스크롤을 최상단으로 이동
     window.scrollTo(0, 0);
 
@@ -338,6 +339,9 @@ window.addEventListener("load", () => {
     setupExteriorSection();
 
     // 모든 DOM 변경 및 애니메이션 설정 후 ScrollTrigger 재계산
-    ScrollTrigger.refresh();
+    // 약간의 지연을 주어 브라우저 렌더링 시간을 확보합니다.
+    setTimeout(() => {
+        ScrollTrigger.refresh();
+    }, 100);
 });
 
