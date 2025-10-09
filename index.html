@@ -3,68 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cafe, The Art of Moments</title>
+    <title>Cafe MAJI - A Vibe for Every Occasion</title>
     
-    <!-- External Libraries -->
+    <!-- External Libraries & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-    
-    <!-- 분리된 CSS 파일 연결 -->
-    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lora:wght@400;500;600&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- 
+      NOTE: 나중에 생성할 CSS와 JS 파일 경로입니다. 
+      <link rel="stylesheet" href="styles/style.css"> 
+    -->
+    <style>
+      /* 임시 기본 스타일 - 나중에 CSS 파일로 옮기세요. */
+      body {
+        font-family: 'Lora', 'Noto Sans KR', serif;
+        color: #f1f1f1;
+        background-color: #1a1a1a;
+      }
+      .font-serif-display {
+        font-family: 'Playfair Display', serif;
+      }
+      .text-shadow-lg {
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+      }
+      .text-outline {
+        -webkit-text-stroke: 1px #f1f1f1;
+        color: transparent;
+      }
+      #hero-section, #bean-section, #people-section, #exterior-section {
+        min-height: 200vh; /* 스크롤 애니메이션을 위한 충분한 높이 확보 */
+      }
+      #card-stack .card {
+        position: absolute;
+        width: 300px;
+        height: 450px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 1rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      }
+      #bean-section {
+        position: relative;
+        overflow: hidden;
+      }
+      #bean-container .bean {
+        position: absolute;
+        width: 40px;
+        height: 55px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        border-radius: 50%;
+        opacity: 0;
+      }
+      #bean-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+      }
+      #interior-section-wrapper {
+        height: 100vh;
+        overflow-x: hidden;
+      }
+      .section-horizontal-container {
+        display: flex;
+        width: 600%; /* 6개의 패널 */
+        height: 100%;
+      }
+      .panel {
+        flex: 0 0 100vw;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        padding: 4rem;
+      }
+      .gallery-image {
+        border-radius: 0.75rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        max-width: 400px;
+      }
+      #scatter-container .scatter-item {
+        position: absolute;
+        width: 250px;
+        height: 350px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 1rem;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+      }
+      #people-title {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .grid-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 0.5rem;
+        transition: transform 0.5s ease-in-out;
+      }
+      .grid-item.group:hover img {
+        transform: scale(1.1);
+      }
+    </style>
 </head>
-<body>
+<body class="bg-[#1a1a1a] text-gray-200">
+
+    <!-- Header & Navigation -->
+    <header class="fixed top-0 w-full z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" id="logo" class="text-2xl font-bold transition-colors duration-300" style="font-family: 'Playfair Display', serif;">Cafe MAJI</a>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#about-us" class="nav-link">About</a>
+                <a href="#menu" class="nav-link">Menu</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-2xl transition-colors duration-300">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 space-y-2 bg-black/80 backdrop-blur-sm rounded-b-lg shadow-lg">
+            <a href="#about-us" class="block py-2 px-3 hover:bg-gray-700 rounded">About</a>
+            <a href="#menu" class="block py-2 px-3 hover:bg-gray-700 rounded">Menu</a>
+            <a href="#gallery" class="block py-2 px-3 hover:bg-gray-700 rounded">Gallery</a>
+        </div>
+    </header>
 
     <!-- 섹션 1: 히어로 & 3D 카드 스택 (음료) -->
     <section id="hero-section" class="section section-long">
         <div class="sticky top-0 w-full h-screen flex flex-col justify-center items-center">
-            <h1 id="hero-title" class="font-serif-display text-6xl md:text-9xl z-10 text-shadow-lg">Art of Moments</h1>
-            <p id="hero-subtitle" class="text-xl md:text-2xl mt-4 z-10">A cup of coffee is a moment of art.</p>
-            <div id="card-stack" class="absolute w-full h-full">
-                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400');"></div>
+            <h1 id="hero-title" class="font-serif-display text-6xl md:text-8xl lg:text-9xl z-10 text-shadow-lg text-amber-50">Welcome to MAJI</h1>
+            <p id="hero-subtitle" class="text-xl md:text-2xl mt-4 z-10">A cute, trendy, and classy cafe experience.</p>
+            <div id="card-stack" class="absolute w-full h-full" style="perspective: 1000px;">
+                <!-- 카드들은 script.js에서 동적으로 채워지거나, 여기에 직접 추가할 수 있습니다. -->
+                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1541167760496-1628856ab772?w=400');"></div>
                 <div class="card" style="background-image: url('https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?w=400');"></div>
-                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400');"></div>
-                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400');"></div>
+                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400');"></div>
+                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1559715745-e1b33a271c8f?w=400');"></div>
                 <div class="card" style="background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400');"></div>
-                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400');"></div>
+                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1559925333-a4e9a973c66f?w=400');"></div>
+                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1525896523256-1a8402c59a45?w=400');"></div>
                 <div class="card" style="background-image: url('https://images.unsplash.com/photo-1561047029-3000c68339ca?w=400');"></div>
-                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400');"></div>
-                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=400');"></div>
-                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1560769684-55063f1bc56a?w=400');"></div>
             </div>
         </div>
     </section>
 
-    <!-- 섹션 2: 커피 원두 클라우드 (커피 디테일) -->
+    <!-- 섹션 2: 커피 원두 클라우드 -->
     <section id="bean-section" class="section section-long bg-black">
-         <div class="sticky top-0 w-full h-screen">
+        <div class="sticky top-0 w-full h-screen flex justify-center items-center">
             <div id="bean-container" class="absolute w-full h-full"></div>
             <div id="bean-text" class="relative z-10 text-center p-8">
-                 <h2 class="font-serif-display text-5xl md:text-8xl">The Perfect Bean</h2>
-                 <p class="mt-4 max-w-2xl mx-auto text-lg">최고의 순간을 위해, 세계 각지에서 엄선된 단 하나의 원두로부터 우리의 이야기는 시작됩니다.</p>
+                 <h2 class="font-serif-display text-5xl md:text-8xl text-amber-100">The Soul of Coffee</h2>
+                 <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-300">Our story begins with a single, perfectly sourced bean, chosen to create your perfect moment.</p>
             </div>
-         </div>
+        </div>
     </section>
 
     <!-- 섹션 3: 가로 스크롤 갤러리 (인테리어) -->
-    <section id="interior-section-wrapper" class="relative h-screen w-full bg-[#2a2a2a]">
+    <section id="interior-section-wrapper" class="relative bg-[#2a2a2a]">
         <div class="section-horizontal-container">
             <div class="panel justify-start items-center p-12">
-                 <div class="max-w-md">
-                    <h2 class="font-serif-display text-5xl md:text-7xl">공간이 주는 영감</h2>
-                    <p class="mt-6 text-lg">단순히 커피를 마시는 곳이 아닌, 당신의 순간이 예술이 되는 공간을 디자인합니다.</p>
-                 </div>
+                <div class="max-w-md">
+                    <h2 class="font-serif-display text-5xl md:text-7xl">A Vibe for Every Occasion</h2>
+                    <p class="mt-6 text-lg">More than just coffee. We design spaces where your moments become art.</p>
+                </div>
             </div>
             <div class="panel">
                 <div class="relative w-full h-full">
-                    <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1920&q=80');"></div>
-                    <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=600" class="absolute top-1/4 left-1/4 gallery-image w-1/4 h-auto transform -rotate-6" data-speed="0.8">
-                    <img src="https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?w=600" class="absolute bottom-1/4 right-1/4 gallery-image w-1/3 h-auto transform rotate-3" data-speed="1.2">
+                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1920&q=80');"></div>
+                    <img src="https://images.unsplash.com/photo-1559925333-a4e9a973c66f?w=600" class="absolute top-1/4 left-1/4 gallery-image w-1/4 h-auto transform -rotate-6">
+                    <img src="https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?w=600" class="absolute bottom-1/4 right-1/4 gallery-image w-1/3 h-auto transform rotate-3">
                 </div>
             </div>
-            <div class="panel" style="background-image: url('https://images.unsplash.com/photo-1463797221720-6b07e6426c24?w=1920&q=80');">
-                 <h2 class="font-serif-display text-5xl md:text-7xl max-w-lg bg-black/50 p-6 rounded-lg backdrop-blur-sm">디테일의 아름다움</h2>
+            <div class="panel bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1463797221720-6b07e6426c24?w=1920&q=80');">
+                 <h2 class="font-serif-display text-5xl md:text-7xl max-w-lg bg-black/50 p-6 rounded-lg backdrop-blur-sm">Beauty in Details</h2>
             </div>
             <div class="panel items-start pt-24">
                 <div class="flex items-start justify-center space-x-8">
@@ -73,18 +194,18 @@
                     <img src="https://images.unsplash.com/photo-1587080413959-06b859fb1070?w=400" class="gallery-image transform translate-y-2 rotate-2">
                 </div>
             </div>
-            <div class="panel justify-end items-end p-12">
-                 <div class="max-w-md text-right">
-                    <h2 class="font-serif-display text-5xl md:text-7xl">책과 함께하는</h2>
-                    <p class="mt-6 text-lg">커피 한 잔의 여유, 그리고 좋은 책 한 권. 완벽한 휴식을 선사합니다.</p>
-                 </div>
+            <div class="panel justify-end items-end p-12 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1920&q=80')">
+                <div class="max-w-md text-right">
+                    <h2 class="font-serif-display text-5xl md:text-7xl text-shadow-lg">With a Good Book</h2>
+                    <p class="mt-6 text-lg bg-black/40 p-4 rounded">The perfect pause: a cup of coffee and a compelling story.</p>
+                </div>
             </div>
-            <div class="panel">
-                 <div class="flex items-center justify-center w-full h-full scale-110">
-                    <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=600" class="gallery-image w-1/5 transform -translate-x-1/2 -rotate-12">
-                    <img src="https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=600" class="gallery-image w-1/4 z-10 shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=600" class="gallery-image w-1/5 transform translate-x-1/2 rotate-12">
-                 </div>
+             <div class="panel">
+                <div class="flex items-center justify-center w-full h-full scale-110">
+                    <img src="https://images.unsplash.com/photo-1590080665780-6b9c6d501f73?w=600" class="gallery-image w-1/5 transform -translate-x-1/2 -rotate-12">
+                    <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=600" class="gallery-image w-1/4 z-10 shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600" class="gallery-image w-1/5 transform translate-x-1/2 rotate-12">
+                </div>
             </div>
         </div>
     </section>
@@ -92,91 +213,75 @@
     <!-- 섹션 4: 스캐터 이미지 (사람들) -->
     <section id="people-section" class="section section-long bg-black">
         <div class="sticky top-0 w-full h-screen">
-            <h2 id="people-title" class="font-serif-display text-6xl md:text-9xl text-outline absolute z-20">The Vibe</h2>
+            <h2 id="people-title" class="font-serif-display text-6xl md:text-9xl text-outline absolute z-20">The MAJI Vibe</h2>
             <div id="scatter-container" class="absolute w-full h-full">
-                <!-- JavaScript가 이 곳에 '사람들'과 '바리스타' 카테고리의 이미지들을 동적으로 채울 예정입니다. -->
+                <!-- JavaScript populates this area -->
             </div>
         </div>
     </section>
     
-    <!-- 섹션 5: 메뉴 그리드 (신규 추가된 섹션) -->
+    <!-- 섹션 5: 메뉴/갤러리 그리드 -->
     <section id="menu-grid-section" class="relative py-20 px-4 bg-[#111]">
-        <h2 class="font-serif-display text-5xl md:text-7xl text-center mb-16">More Moments</h2>
+        <h2 id="gallery" class="font-serif-display text-5xl md:text-7xl text-center mb-16">Glimpse of Our Cafe</h2>
         
         <div class="max-w-7xl mx-auto">
-            <h3 class="font-serif-display text-3xl md:text-4xl text-left mb-8 border-b border-gray-700 pb-4">Desserts &amp; Foods</h3>
+            <h3 class="font-serif-display text-3xl md:text-4xl text-left mb-8 border-b border-gray-700 pb-4">Signature Drinks</h3>
             <div class="grid-container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-16">
-                <!-- 디저트 & 음식 이미지 -->
-                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1559715745-e1b33a271c8f?w=400"></div>
-                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400"></div>
-                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=400"></div>
-                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400"></div>
-                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?w=400"></div>
+                <!-- JS or manual population -->
+                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1559715745-e1b33a271c8f?w=400" alt="Dessert"></div>
+                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400" alt="Cake"></div>
+                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=400" alt="Breakfast"></div>
+                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400" alt="Macarons"></div>
+                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?w=400" alt="Pastries"></div>
             </div>
 
-            <h3 class="font-serif-display text-3xl md:text-4xl text-left mb-8 border-b border-gray-700 pb-4">Unique Interiors</h3>
+            <h3 id="about-us" class="font-serif-display text-3xl md:text-4xl text-left mb-8 border-b border-gray-700 pb-4">Cozy Corners</h3>
             <div class="grid-container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-16">
-                <!-- 독특한 인테리어 -->
-                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1590080665780-6b9c6d501f73?w=400"></div>
-                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400"></div>
-                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=400"></div>
-                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1571501679680-de32f1e7aad4?w=400"></div>
-                 <div class="grid-item group"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400"></div>
+                 <!-- JS or manual population -->
+                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1590080665780-6b9c6d501f73?w=400" alt="Interior"></div>
+                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400" alt="Interior"></div>
+                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=400" alt="Book Cafe"></div>
+                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1571501679680-de32f1e7aad4?w=400" alt="Interior"></div>
+                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400" alt="Interior"></div>
             </div>
-
-            <h3 class="font-serif-display text-3xl md:text-4xl text-left mb-8 border-b border-gray-700 pb-4">Terrace &amp; Outdoor</h3>
-            <div class="grid-container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-16">
-                <!-- 야외/테라스 -->
-                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1542181961-9590d0c79dab?w=400"></div>
-                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400"></div>
-                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400"></div>
-                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400"></div>
-                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=400"></div>
-                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=400"></div>
-            </div>
-            
-            <h3 class="font-serif-display text-3xl md:text-4xl text-left mb-8 border-b border-gray-700 pb-4">From Baristas</h3>
-            <div class="grid-container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-16">
-                 <!-- 바리스타 -->
-                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1565689876693-9b5f499c9d47?w=400"></div>
-                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1534778101976-62847782c213?w=400"></div>
-                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1560717789-0ac7c58ac90a?w=400"></div>
-                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1562059395-0ae2e4e6ad6a?w=400"></div>
-                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1560684352-8497838da222?w=400"></div>
-                <div class="grid-item group"><img src="https://images.unsplash.com/photo-1569870499705-504a2566c56f?w=400"></div>
-            </div>
-
-            <!-- 나머지 모든 이미지를 여기에 추가... -->
-            <div class="grid-container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                 <div class="grid-item group"><img src="https://images.unsplash.com/photo-1570194065650-2f276f46d38c?w=400"></div>
-                 <div class="grid-item group"><img src="https://images.unsplash.com/photo-1572119865084-43b2cbd63db8?w=400"></div>
-                 <div class="grid-item group"><img src="https://images.unsplash.com/photo-1570968915860-54f5c8f1badd?w=400"></div>
-                 <div class="grid-item group"><img src="https://images.unsplash.com/photo-1570996914361-86d12a9e6d70?w=400"></div>
-                 <div class="grid-item group"><img src="https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?w=400"></div>
-                 <div class="grid-item group"><img src="https://images.unsplash.com/photo-1498804103079-a6351b050096?w=400"></div>
-                 <div class="grid-item group"><img src="https://images.unsplash.com/photo-1477763858572-cda7deaa9bc5?w=400"></div>
-                 <div class="grid-item group"><img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400"></div>
-            </div>
+             <div class="text-center mt-12">
+                 <a href="gallery.html" class="inline-block bg-amber-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-amber-700 transition-colors">View Full Gallery</a>
+             </div>
         </div>
     </section>
 
     <!-- 섹션 6: 외관 & 마무리 -->
     <section id="exterior-section" class="section section-long">
-        <div class="sticky top-0 w-full h-screen">
+        <div class="sticky top-0 w-full h-screen flex justify-center items-center">
             <div id="exterior-bg" class="absolute w-full h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1571624436279-b272aff752b5?w=1920&q=80');"></div>
             <div id="final-text-container" class="relative z-10 text-center bg-black/60 p-8 rounded-xl backdrop-blur-md">
-                <h2 id="final-title" class="font-serif-display text-4xl md:text-6xl"></h2>
-                <p id="final-subtitle" class="mt-4 text-lg">We are waiting for you.</p>
+                <h2 id="final-title" class="font-serif-display text-4xl md:text-6xl text-amber-100"></h2>
+                <p id="final-subtitle" class="mt-4 text-lg">Find your new favorite spot.</p>
             </div>
         </div>
     </section>
+    
+    <!-- Footer -->
+    <footer id="menu" class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="font-serif-display font-bold text-2xl mb-2 text-amber-300">Cafe MAJI</p>
+            <p class="text-gray-400">12232 Artesia Blvd, Artesia, CA 90701</p>
+            <p class="text-gray-400">(562) 281-9511</p>
+            <div class="mt-6 text-2xl space-x-6">
+                <a href="#" class="hover:text-amber-300 transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-amber-300 transition-colors"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.yelp.com/biz/cafe-maji-artesia" target="_blank" class="hover:text-amber-300 transition-colors"><i class="fab fa-yelp"></i></a>
+            </div>
+            <p class="mt-8 text-sm text-gray-500">&copy; 2025 Cafe MAJI. All Rights Reserved.</p>
+        </div>
+    </footer>
 
     <!-- GSAP Animation Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
 
-    <!-- 분리된 JavaScript 파일 연결 -->
+    <!-- Your Custom JavaScript File -->
     <script src="js/script.js" defer></script>
 
 </body>
