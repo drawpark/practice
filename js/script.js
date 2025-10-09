@@ -13,48 +13,46 @@ const images = {
         'https://images.unsplash.com/photo-1561047029-3000c68339ca?w=400',
         'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400',
         'https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=400',
-        'https://images.unsplash.com/photo-1560769684-55063f1bc56a?w=400'
+        'https://images.unsplash.com/photo-1560769684-55063f1bc56a?w=400',
+        'https://images.unsplash.com/photo-1570194065650-2f276f46d38c?w=400',
+        'https://images.unsplash.com/photo-1572119865084-43b2cbd63db8?w=400',
+        'https://images.unsplash.com/photo-1570968915860-54f5c8f1badd?w=400',
+        'https://images.unsplash.com/photo-1570996914361-86d12a9e6d70?w=400',
     ],
-    interior: [ // 가로 스크롤 섹션에 사용될 이미지
+    interior: [ 
         'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400',
         'https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=400',
         'https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?w=400',
         'https://images.unsplash.com/photo-1571501679680-de32f1e7aad4?w=400',
         'https://images.unsplash.com/photo-1463797221720-6b07e6426c24?w=400',
         'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=400',
-        'https://images.unsplash.com/photo-1516450364592-53a9ffa3e7a3?w=400',
+        'https://images.unsplash.com/photo-1516450364592-53a9ffa_e7a3?w=400',
         'https://images.unsplash.com/photo-1587080413959-06b859fb1070?w=400',
         'https://images.unsplash.com/photo-1590080665780-6b9c6d501f73?w=400',
-        'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400'
+        'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400',
+        'https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?w=400',
+        'https://images.unsplash.com/photo-1498804103079-a6351b050096?w=400',
     ],
     people: [
         'https://images.unsplash.com/photo-1542838132-92c53300491e?w=400',
         'https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=400',
         'https://images.unsplash.com/photo-1521791055366-0d553872125f?w=400',
-        'https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?w=400',
         'https://images.unsplash.com/photo-1565688534245-05d6b5be184a?w=400',
-        'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400', // (다른 샷)
-        'https://images.unsplash.com/photo-1498804103079-a6351b050096?w=400',
-        'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400', //(접시와 함께)
     ],
     barista: [
-        'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400', //(바리스타)
+        'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400',
         'https://images.unsplash.com/photo-1565689876693-9b5f499c9d47?w=400',
-        'https://images.unsplash.com/photo-1561047029-3000c68339ca?w=400',
         'https://images.unsplash.com/photo-1534778101976-62847782c213?w=400',
         'https://images.unsplash.com/photo-1560717789-0ac7c58ac90a?w=400',
         'https://images.unsplash.com/photo-1562059395-0ae2e4e6ad6a?w=400',
         'https://images.unsplash.com/photo-1560684352-8497838da222?w=400',
         'https://images.unsplash.com/photo-1569870499705-504a2566c56f?w=400',
-        'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400',
-        'https://images.unsplash.com/photo-1572119865084-43b2cbd63db8?w=400'
     ],
     exterior: [
         'https://images.unsplash.com/photo-1571624436279-b272aff752b5?w=400',
         'https://images.unsplash.com/photo-1505275350441-83dcda8eeef5?w=400',
         'https://images.unsplash.com/photo-1464207687429-7505649dae38?w=400',
         'https://images.unsplash.com/photo-1477763858572-cda7deaa9bc5?w=400',
-        'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400', //(파스타와 와인)
         'https://images.unsplash.com/photo-1542181961-9590d0c79dab?w=400',
         'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400',
         'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400',
@@ -68,7 +66,9 @@ const images = {
             "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400", 
             "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=400", 
             "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400", 
-            "https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?w=400"
+            "https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?w=400",
+            "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400",
+            "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400",
         ],
         uniqueInteriors: [ 
             "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=400",
@@ -80,7 +80,6 @@ const images = {
             'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400',
             'https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?w=400',
             'https://images.unsplash.com/photo-1498804103079-a6351b050096?w=400',
-            'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400',
             'https://images.unsplash.com/photo-1463797221720-6b07e6426c24?w=400',
             'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=400',
             'https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?w=400',
@@ -148,6 +147,7 @@ function setupHeader() {
         end: 99999,
         onUpdate: self => {
             const header = document.querySelector('#main-header');
+            if(!header) return;
             if (self.direction === -1) { // 스크롤 올릴 때
                 header.classList.remove('header-hidden');
             } else if (self.scroll() > 200) { // 스크롤 내릴 때
@@ -162,16 +162,20 @@ function setupHeader() {
 
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-    });
+    if(mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
 }
 
 // --- 섹션 1: 히어로 & 3D 카드 스택 애니메이션 ---
 function setupHeroSection() {
+    const hero = document.querySelector("#hero-section");
+    if(!hero) return;
     const tl = gsap.timeline({
         scrollTrigger: {
-            trigger: "#hero-section",
+            trigger: hero,
             start: "top top",
             end: "bottom top",
             scrub: 1.2,
@@ -201,8 +205,9 @@ function setupHeroSection() {
 
 // --- 섹션 2: 커피 원두 클라우드 애니메이션 ---
 function setupBeanSection() {
+    const beanSection = document.querySelector("#bean-section");
+    if(!beanSection) return;
     const beanContainer = document.getElementById("bean-container");
-    if(!beanContainer) return;
     const beanCount = 50;
     const beanImageUrl = 'https://images.unsplash.com/photo-1570996914361-86d12a9e6d70?w=400';
     for (let i = 0; i < beanCount; i++) {
@@ -215,7 +220,7 @@ function setupBeanSection() {
     const beans = gsap.utils.toArray(".bean");
     const tl = gsap.timeline({
         scrollTrigger: {
-            trigger: "#bean-section",
+            trigger: beanSection,
             start: "top top",
             end: "bottom top",
             scrub: 1.5,
@@ -241,14 +246,15 @@ function setupBeanSection() {
 
 // --- 섹션 3: 가로 스크롤 갤러리 애니메이션 ---
 function setupInteriorSection() {
+    const wrapper = document.querySelector('#interior-section-wrapper');
+    if(!wrapper) return;
     const horizontalSection = document.querySelector('.section-horizontal-container');
-    if(!horizontalSection) return;
     
     gsap.to(horizontalSection, {
         x: () => -(horizontalSection.offsetWidth - window.innerWidth),
         ease: "none",
         scrollTrigger: {
-            trigger: "#interior-section-wrapper",
+            trigger: wrapper,
             pin: true, scrub: 1,
             end: () => "+=" + (horizontalSection.offsetWidth - window.innerWidth),
             invalidateOnRefresh: true
@@ -278,12 +284,14 @@ function setupInteriorSection() {
 
 // --- 섹션 4: 스캐터 이미지 애니메이션 ---
 function setupPeopleSection() {
+    const peopleSection = document.querySelector("#people-section");
+    if(!peopleSection) return;
     const items = gsap.utils.toArray("#scatter-container .scatter-item");
     if(items.length === 0) return;
 
     const tl = gsap.timeline({
         scrollTrigger: {
-            trigger: "#people-section",
+            trigger: peopleSection,
             pin: true, scrub: 1.5,
             start: "top top", end: "+=250%"
         }
@@ -317,7 +325,6 @@ function setupPeopleSection() {
 
 // --- 정적 컨텐츠 & 메뉴 그리드 애니메이션 ---
 function setupStaticContentAnimations() {
-    // About & Reviews
     gsap.utils.toArray('#static-content section').forEach(section => {
         gsap.from(section, {
             scrollTrigger: { trigger: section, start: 'top 80%', toggleActions: 'play none none reverse' },
@@ -325,8 +332,7 @@ function setupStaticContentAnimations() {
         });
     });
     
-    // Menu Grid Items
-    gsap.utils.toArray('.grid-container').forEach(container => {
+    gsap.utils.toArray('#menu-grid-section .grid-container').forEach(container => {
         gsap.from(container.querySelectorAll('.grid-item'), {
             scrollTrigger: {
                 trigger: container, start: 'top 85%', toggleActions: 'play none none reverse'
@@ -339,9 +345,11 @@ function setupStaticContentAnimations() {
 
 // --- 섹션 6: 외관 & 마무리 애니메이션 ---
 function setupExteriorSection() {
+    const exteriorSection = document.querySelector("#exterior-section");
+    if(!exteriorSection) return;
     const tl = gsap.timeline({
         scrollTrigger: {
-            trigger: "#exterior-section",
+            trigger: exteriorSection,
             pin: true, scrub: 1,
             start: "top top", end: "+=200%"
         }
