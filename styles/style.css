@@ -62,7 +62,7 @@ header .nav-link:hover::after {
 /* ---------------------------------- */
 /* GSAP Pinning을 위한 섹션 높이 설정 */
 /* #hero-section의 min-height를 제거하여 불필요한 공백 문제를 해결했습니다. */
-#bean-section, #people-section, #exterior-section { min-height: 200vh; }
+#bean-section, #people-section, #exterior-section { min-height: 100vh; }
 
 #interior-section-wrapper {
   height: 100vh;
