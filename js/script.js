@@ -159,28 +159,51 @@ function setupHeroSection() {
         scrollTrigger: {
             trigger: "#hero-section",
             start: "top top",
-            end: "bottom top",
-            scrub: 1,
+            end: "bottom top", // Pin for the duration of one screen height
+            scrub: 1.2, // A slightly higher scrub value can feel smoother
             pin: true,
         }
     });
+
     const cards = gsap.utils.toArray("#card-stack .card");
-    gsap.set(cards, { top: "50%", left: "50%", xPercent: -50, yPercent: -50, transformOrigin: "center center" });
+    gsap.set(cards, { 
+        top: "50%", 
+        left: "50%", 
+        xPercent: -50, 
+        yPercent: -50, 
+        transformOrigin: "center center" 
+    });
     
+    // Initial entrance animation (remains the same as user liked it)
     gsap.from("#hero-title", { duration: 1.5, y: 100, opacity: 0, ease: "power4.out", delay: 0.5 });
     gsap.from("#hero-subtitle", { duration: 1.5, y: 50, opacity: 0, ease: "power4.out", delay: 0.8 });
     gsap.from(cards, { duration: 1.5, scale: 0, opacity: 0, stagger: 0.1, ease: "power4.out", delay: 1.2 });
 
+    // Start fading out the text as soon as scrolling begins
+    tl.to(["#hero-title", "#hero-subtitle"], { 
+        opacity: 0, 
+        duration: 0.4 
+    }, 0);
+
+    // New, smoother card animation for the scroll
     cards.forEach((card, i) => {
-        tl.to(card, { z: i * 35, ease: "none" }, 0)
-          .to(card, {
-            yPercent: -150 - (i * 10),
-            rotateZ: (i % 2 === 0 ? 1 : -1) * (20 - i * 1.5),
-            rotateX: -55,
-            ease: "power2.inOut"
-        }, 0.5);
+        // 1. Gently spread the cards out horizontally to create a fanned effect
+        tl.to(card, {
+            x: (i - (cards.length - 1) / 2) * 70, // Spread cards from the center
+            rotateZ: (i - (cards.length - 1) / 2) * 4, // Add a slight tilt
+            ease: "power1.inOut"
+        }, 0.1); // Start this animation early in the scroll
+
+        // 2. Gather all cards back to the center, scale them down, and fade them out
+        // This creates a smooth transition to the next section
+        tl.to(card, {
+            x: 0,
+            rotateZ: 0,
+            scale: 0.3,
+            opacity: 0,
+            ease: "power2.in"
+        }, 0.6); // Start the exit animation in the latter half of the scroll
     });
-    tl.to(["#hero-title", "#hero-subtitle"], { opacity: 0, duration: 0.5 }, 0.5);
 }
 
 function setupBeanSection() {
