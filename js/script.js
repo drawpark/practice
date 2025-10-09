@@ -1,18 +1,20 @@
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
-// --- 이미지 데이터 ---
+// --- 1. 이미지 데이터 ---
+// 요청하신 모든 이미지 URL을 카테고리별로 정리했습니다.
 const images = {
-    // 🔔 [수정] 커피 원두 이미지 배열 추가
     beans: [
         'https://images.unsplash.com/photo-1572491410294-7a38f711a6fa?w=200',
         'https://images.unsplash.com/photo-1599380816399-6a3f4a382b3a?w=200',
         'https://images.unsplash.com/photo-1552346986-7e72a4ab1b54?w=200',
         'https://images.unsplash.com/photo-1606891834379-33a41b559286?w=200',
-        'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=200'
+        'https://images.unsplash.com/photo-1509042239860-f550ce711a69?w=200'
     ],
     drinks: [
+        'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400',
         'https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?w=400',
         'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400',
+        'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400',
         'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400',
         'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400',
         'https://images.unsplash.com/photo-1561047029-3000c68339ca?w=400',
@@ -22,18 +24,22 @@ const images = {
     ],
     interior: [
         'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400',
+        'https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=400',
         'https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?w=400',
         'https://images.unsplash.com/photo-1571501679680-de32f1e7aad4?w=400',
         'https://images.unsplash.com/photo-1463797221720-6b07e6426c24?w=400',
         'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=400',
         'https://images.unsplash.com/photo-1516450364592-53a9ffa3e7a3?w=400',
-        'https://images.unsplash.com/photo-1587080413959-06b859fb1070?w=400'
+        'https://images.unsplash.com/photo-1587080413959-06b859fb1070?w=400',
+        'https://images.unsplash.com/photo-1590080665780-6b9c6d501f73?w=400',
+        'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400'
     ],
     people: [
         'https://images.unsplash.com/photo-1542838132-92c53300491e?w=400',
         'https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=400',
         'https://images.unsplash.com/photo-1521791055366-0d553872125f?w=400',
         'https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?w=400',
+        'https://images.unsplash.com/photo-1565688534245-05d6b5be184a?w=400',
         'https://images.unsplash.com/photo-1498804103079-a6351b050096?w=400'
     ],
     barista: [
@@ -41,30 +47,34 @@ const images = {
         'https://images.unsplash.com/photo-1565689876693-9b5f499c9d47?w=400',
         'https://images.unsplash.com/photo-1534778101976-62847782c213?w=400',
         'https://images.unsplash.com/photo-1560717789-0ac7c58ac90a?w=400',
-        'https://images.unsplash.com/photo-1562059395-0ae2e4e6ad6a?w=400'
+        'https://images.unsplash.com/photo-1562059395-0ae2e4e6ad6a?w=400',
+        'https://images.unsplash.com/photo-1560684352-8497838da222?w=400',
+        'https://images.unsplash.com/photo-1569870499705-504a2566c56f?w=400'
     ],
     exterior: [
-        'https://images.unsplash.com/photo-1571624436279-b272aff752b5?w=400',
-        'https://images.unsplash.com/photo-1505275350441-83dcda8eeef5?w=400',
-        'https://images.unsplash.com/photo-1464207687429-7505649dae38?w=400',
-        'https://images.unsplash.com/photo-1477763858572-cda7deaa9bc5?w=400'
+        'https://images.unsplash.com/photo-1571624436279-b272aff752b5?w=1920&q=80',
+        'https://images.unsplash.com/photo-1505275350441-83dcda8eeef5?w=1920&q=80',
+        'https://images.unsplash.com/photo-1464207687429-7505649dae38?w=1920&q=80',
+        'https://images.unsplash.com/photo-1477763858572-cda7deaa9bc5?w=1920&q=80'
     ],
     grid: {
-        desserts: [
+        'Desserts & Foods': [
             "https://images.unsplash.com/photo-1559715745-e1b33a271c8f?w=400",
             "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400",
             "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=400",
             "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400",
-            "https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?w=400"
+            "https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?w=400",
+            "https://images.unsplash.com/photo-1570194065650-2f276f46d38c?w=400"
         ],
-        uniqueInteriors: [
+        'Unique Interiors': [
              "https://images.unsplash.com/photo-1590080665780-6b9c6d501f73?w=400",
              "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400",
              "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=400",
              "https://images.unsplash.com/photo-1571501679680-de32f1e7aad4?w=400",
-             "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400"
+             "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
+             "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=400"
         ],
-        terrace: [
+        'Terrace & Outdoor': [
             "https://images.unsplash.com/photo-1542181961-9590d0c79dab?w=400",
             "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400",
             "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400",
@@ -72,7 +82,7 @@ const images = {
             "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=400",
             "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=400"
         ],
-        fromBaristas: [
+        'From Our Baristas': [
             "https://images.unsplash.com/photo-1565689876693-9b5f499c9d47?w=400",
             "https://images.unsplash.com/photo-1534778101976-62847782c213?w=400",
             "https://images.unsplash.com/photo-1560717789-0ac7c58ac90a?w=400",
@@ -80,58 +90,90 @@ const images = {
             "https://images.unsplash.com/photo-1560684352-8497838da222?w=400",
             "https://images.unsplash.com/photo-1569870499705-504a2566c56f?w=400"
         ],
-        misc: [
-            "https://images.unsplash.com/photo-1570194065650-2f276f46d38c?w=400",
+        'More Moments': [
             "https://images.unsplash.com/photo-1572119865084-43b2cbd63db8?w=400",
             "https://images.unsplash.com/photo-1570968915860-54f5c8f1badd?w=400",
             "https://images.unsplash.com/photo-1570996914361-86d12a9e6d70?w=400",
-            "https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?w=400",
-            "https://images.unsplash.com/photo-1498804103079-a6351b050096?w=400",
             "https://images.unsplash.com/photo-1477763858572-cda7deaa9bc5?w=400",
             "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400"
         ]
     }
 };
 
-// --- 초기 설정: 동적 컨텐츠 채우기 ---
-function populateContent() {
-    // 섹션 4: 스캐터 이미지 채우기
-    const scatterContainer = document.querySelector("#scatter-container");
-    const peopleAndBaristas = [...images.people, ...images.barista];
-    peopleAndBaristas.forEach(url => {
-        let item = document.createElement("div");
-        item.className = "scatter-item";
-        item.style.backgroundImage = `url(${url})`;
-        scatterContainer.appendChild(item);
+// --- 2. UI 및 이벤트 핸들러 설정 ---
+function setupHeaderAndMenu() {
+    const header = document.querySelector('header');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    window.addEventListener('scroll', () => {
+        header.classList.toggle('bg-black/80', window.scrollY > 50);
+        header.classList.toggle('backdrop-blur-sm', window.scrollY > 50);
+        header.classList.toggle('shadow-lg', window.scrollY > 50);
     });
 
-    // 섹션 5: 메뉴 그리드 채우기
-    const gridSections = [
-        { selector: 'h3:nth-of-type(1) + .grid-container', data: images.grid.desserts },
-        { selector: 'h3:nth-of-type(2) + .grid-container', data: images.grid.uniqueInteriors },
-        { selector: 'h3:nth-of-type(3) + .grid-container', data: images.grid.terrace },
-        { selector: 'h3:nth-of-type(4) + .grid-container', data: images.grid.fromBaristas },
-        { selector: 'h3:nth-of-type(4) + .grid-container + .grid-container', data: images.grid.misc }
-    ];
-
-    gridSections.forEach(section => {
-        const container = document.querySelector(`#menu-grid-section ${section.selector}`);
-        if(container) {
-            const placeholders = container.querySelectorAll('.grid-item');
-            placeholders.forEach(p => p.remove());
-            
-            section.data.forEach(url => {
-                let item = document.createElement("div");
-                item.className = "grid-item group relative overflow-hidden rounded-lg cursor-pointer";
-                item.innerHTML = `<img src="${url}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out">`;
-                container.appendChild(item);
-            });
+    mobileMenuButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        mobileMenu.classList.toggle('hidden');
+    });
+    
+    document.addEventListener('click', (e) => {
+        const isClickInsideMenu = mobileMenu.contains(e.target) || mobileMenuButton.contains(e.target);
+        if (!mobileMenu.classList.contains('hidden') && !isClickInsideMenu) {
+            mobileMenu.classList.add('hidden');
         }
     });
 }
 
+// --- 3. 동적 컨텐츠 생성 ---
+function populateContent() {
+    // 섹션 4: 스캐터 이미지 채우기
+    const scatterContainer = document.querySelector("#scatter-container");
+    if (scatterContainer) {
+        const peopleAndBaristas = [...images.people, ...images.barista];
+        peopleAndBaristas.forEach(url => {
+            const item = document.createElement("div");
+            item.className = "scatter-item";
+            item.style.backgroundImage = `url(${url})`;
+            scatterContainer.appendChild(item);
+        });
+    }
 
-// --- 섹션 1: 히어로 & 3D 카드 스택 애니메이션 ---
+    // 섹션 5: 메뉴 그리드 동적 생성
+    const gridTargetContainer = document.querySelector("#menu-grid-section .max-w-7xl");
+    if(gridTargetContainer) {
+        // 기존에 하드코딩된 자식 요소들을 비웁니다.
+        while (gridTargetContainer.firstChild) {
+            gridTargetContainer.removeChild(gridTargetContainer.firstChild);
+        }
+
+        // images.grid 객체를 기반으로 섹션을 동적으로 생성합니다.
+        for (const category in images.grid) {
+            // h3 제목 생성
+            const title = document.createElement('h3');
+            title.className = "font-serif-display text-3xl md:text-4xl text-left mb-8 border-b border-gray-700 pb-4";
+            title.textContent = category;
+            gridTargetContainer.appendChild(title);
+
+            // grid-container div 생성
+            const gridContainer = document.createElement('div');
+            gridContainer.className = "grid-container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-16";
+            
+            // 각 이미지 아이템 생성
+            images.grid[category].forEach(url => {
+                const item = document.createElement("div");
+                item.className = "grid-item group";
+                item.innerHTML = `<img src="${url}" alt="${category} image" class="w-full h-full object-cover">`;
+                gridContainer.appendChild(item);
+            });
+            gridTargetContainer.appendChild(gridContainer);
+        }
+    }
+}
+
+// --- 4. GSAP 애니메이션 설정 ---
+
+// 섹션 1: 히어로 & 3D 카드 스택
 function setupHeroSection() {
     const tl = gsap.timeline({
         scrollTrigger: {
@@ -142,302 +184,157 @@ function setupHeroSection() {
             pin: true,
         }
     });
-
     const cards = gsap.utils.toArray("#card-stack .card");
-    gsap.set(cards, { 
-        top: "50%", left: "50%", xPercent: -50, yPercent: -50,
-        transformOrigin: "center center"
-    });
+    gsap.set(cards, { top: "50%", left: "50%", xPercent: -50, yPercent: -50, transformOrigin: "center center" });
     
     gsap.from("#hero-title", { duration: 1.5, y: 100, opacity: 0, ease: "power4.out", delay: 0.5 });
     gsap.from("#hero-subtitle", { duration: 1.5, y: 50, opacity: 0, ease: "power4.out", delay: 0.8 });
-    gsap.from(cards, {
-        duration: 1.5,
-        scale: 0,
-        opacity: 0,
-        stagger: 0.1,
-        ease: "power4.out",
-        delay: 1.2
-    });
+    gsap.from(cards, { duration: 1.5, scale: 0, opacity: 0, stagger: 0.1, ease: "power4.out", delay: 1.2 });
 
     cards.forEach((card, i) => {
-        tl.to(card, {
-            z: i * 30,
-            ease: "none"
-        }, 0)
-        .to(card, {
+        tl.to(card, { z: i * 35, ease: "none" }, 0)
+          .to(card, {
             yPercent: -150 - (i * 10),
             rotateZ: (i % 2 === 0 ? 1 : -1) * (20 - i * 1.5),
             rotateX: -55,
             ease: "power2.inOut"
         }, 0.5);
     });
-    
     tl.to(["#hero-title", "#hero-subtitle"], { opacity: 0, duration: 0.5 }, 0.5);
 }
 
-// --- 섹션 2: 커피 원두 클라우드 애니메이션 ---
+// 섹션 2: 커피 원두 클라우드
 function setupBeanSection() {
     const beanContainer = document.getElementById("bean-container");
     const beanCount = 50;
-    
-    // 🔔 [수정] images.beans 배열 사용
-    const beanImages = images.beans; 
-
+    const beanImages = images.beans;
     for (let i = 0; i < beanCount; i++) {
         let bean = document.createElement("div");
         bean.className = "bean";
-
-        // 🔔 [수정] 배열에서 랜덤 이미지 URL 선택
-        const randomImageUrl = beanImages[Math.floor(Math.random() * beanImages.length)];
-        bean.style.backgroundImage = `url('${randomImageUrl}')`;
-        
+        bean.style.backgroundImage = `url('${beanImages[Math.floor(Math.random() * beanImages.length)]}')`;
         beanContainer.appendChild(bean);
     }
 
     const beans = gsap.utils.toArray(".bean");
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: "#bean-section",
-            start: "top top",
-            end: "bottom top",
-            scrub: 1.5,
-            pin: true,
-        }
-    });
+    const tl = gsap.timeline({ scrollTrigger: { trigger: "#bean-section", start: "top top", end: "bottom top", scrub: 1.5, pin: true } });
 
-    beans.forEach(bean => {
-        gsap.set(bean, {
-            x: gsap.utils.random(0, window.innerWidth),
-            y: gsap.utils.random(0, window.innerHeight),
-            scale: gsap.utils.random(0.5, 1.2),
-            opacity: 0,
-        });
-    });
+    beans.forEach(bean => gsap.set(bean, { x: gsap.utils.random(0, window.innerWidth), y: gsap.utils.random(0, window.innerHeight), scale: gsap.utils.random(0.5, 1.2), opacity: 0 }));
 
     tl.to(beans, { opacity: 1, stagger: 0.05, ease: "power2.out" })
-      .fromTo("#bean-text", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, ease: "power3.out" }, "<")
-      .to(beans, {
-        x: window.innerWidth / 2,
-        y: window.innerHeight / 2,
-        scale: 0,
-        opacity: 0,
-        duration: 2,
-        stagger: 0.02,
-        ease: "power3.in"
-      }, ">1")
-      .to("#bean-text", { opacity: 0, scale: 0.8, ease: "power3.in" }, "<");
+      .fromTo("#bean-text", { opacity: 0, scale: 0.8, yPercent: 10 }, { opacity: 1, scale: 1, yPercent: 0, ease: "power3.out" }, "<")
+      .to(beans, { x: window.innerWidth / 2, y: window.innerHeight / 2, scale: 0, opacity: 0, duration: 2, stagger: 0.02, ease: "power3.in" }, ">1.5")
+      .to("#bean-text", { opacity: 0, scale: 0.8, yPercent: -10, ease: "power3.in" }, "<");
 }
 
-// --- 섹션 3: 가로 스크롤 갤러리 애니메이션 ---
+// 섹션 3: 가로 스크롤 갤러리 (원본 디테일 복원)
 function setupInteriorSection() {
     const horizontalSection = document.querySelector('.section-horizontal-container');
+    if (!horizontalSection) return;
     
-    gsap.to(horizontalSection, {
-        x: () => -(horizontalSection.offsetWidth - window.innerWidth),
+    const mainTween = gsap.to(horizontalSection, {
+        x: () => -(horizontalSection.scrollWidth - window.innerWidth),
         ease: "none",
         scrollTrigger: {
             trigger: "#interior-section-wrapper",
             pin: true,
             scrub: 1,
-            end: () => "+=" + (horizontalSection.offsetWidth - window.innerWidth),
+            end: () => "+=" + (horizontalSection.scrollWidth - window.innerWidth),
             invalidateOnRefresh: true
         }
     });
     
     const panels = gsap.utils.toArray('.section-horizontal-container .panel');
     panels.forEach((panel, i) => {
-        if (i === 0) {
-            gsap.from(panel.querySelector('h2, p'), {
-                x: -100, opacity: 0, stagger: 0.2,
+        // 각 패널이 뷰에 들어올 때의 개별 애니메이션
+        const animationConfig = [
+            { selector: 'h2, p', vars: { x: -100, opacity: 0, stagger: 0.2 } },
+            { selector: 'img', vars: { y: 100, opacity: 0, stagger: 0.2 } },
+            { selector: 'h2', vars: { scale: 0.5, opacity: 0 } },
+            { selector: 'img', vars: { scale: 0, rotate: 30, opacity: 0, stagger: 0.15 } },
+            { selector: 'h2, p', vars: { x: 100, opacity: 0, stagger: 0.2 } },
+            { selector: 'img', vars: { y: (i)=>i*50-50, x: (i)=>i*25-25, rotate: (i)=>i*-10, opacity: 0 } }
+        ];
+
+        if (animationConfig[i]) {
+            gsap.from(panel.querySelectorAll(animationConfig[i].selector), {
+                ...animationConfig[i].vars,
                 scrollTrigger: {
                     trigger: panel,
-                    containerAnimation: gsap.getTweensOf(horizontalSection)[0],
-                    start: 'left center',
-                }
-            });
-        }
-        if (i === 1) {
-            gsap.from(panel.querySelectorAll('img'), {
-                y: 100, opacity: 0, stagger: 0.2,
-                scrollTrigger: {
-                    trigger: panel,
-                    containerAnimation: gsap.getTweensOf(horizontalSection)[0],
+                    containerAnimation: mainTween,
                     start: 'left 80%',
-                }
-            });
-        }
-        if (i === 2) {
-            gsap.from(panel.querySelector('h2'), {
-                scale: 0.5, opacity: 0,
-                scrollTrigger: {
-                    trigger: panel,
-                    containerAnimation: gsap.getTweensOf(horizontalSection)[0],
-                    start: 'left center',
-                }
-            });
-        }
-        if (i === 3) {
-            gsap.from(panel.querySelectorAll('img'), {
-                scale: 0, rotate: 30, opacity: 0, stagger: 0.15,
-                scrollTrigger: {
-                    trigger: panel,
-                    containerAnimation: gsap.getTweensOf(horizontalSection)[0],
-                    start: 'left 80%',
-                }
-            });
-        }
-        if (i === 4) {
-            gsap.from(panel.querySelector('h2, p'), {
-                x: 100, opacity: 0, stagger: 0.2,
-                scrollTrigger: {
-                    trigger: panel,
-                    containerAnimation: gsap.getTweensOf(horizontalSection)[0],
-                    start: 'left center',
-                }
-            });
-        }
-        if (i === 5) {
-             gsap.from(panel.querySelectorAll('img'), {
-                y: (i) => i * 100 - 100, x: (i) => i * 50 - 50, rotate: (i) => i * -10, opacity: 0,
-                scrollTrigger: {
-                    trigger: panel,
-                    containerAnimation: gsap.getTweensOf(horizontalSection)[0],
-                    start: 'left 70%',
+                    toggleActions: 'play none none reverse'
                 }
             });
         }
     });
 }
 
-
-// --- 섹션 4: 스캐터 이미지 애니메이션 ---
+// 섹션 4: 스캐터 이미지
 function setupPeopleSection() {
     const items = gsap.utils.toArray("#scatter-container .scatter-item");
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: "#people-section",
-            pin: true,
-            scrub: 1.5,
-            start: "top top",
-            end: "+=250%"
-        }
-    });
+    if (items.length === 0) return;
+    const tl = gsap.timeline({ scrollTrigger: { trigger: "#people-section", pin: true, scrub: 1.5, start: "top top", end: "+=300%" } });
 
-    items.forEach(item => {
-        gsap.set(item, {
-            x: gsap.utils.random(-100, 100) + "vw",
-            y: gsap.utils.random(-100, 100) + "vh",
-            rotate: gsap.utils.random(-360, 360)
-        });
-    });
+    items.forEach(item => gsap.set(item, { x: gsap.utils.random(-100, 100) + "vw", y: gsap.utils.random(-100, 100) + "vh", rotate: gsap.utils.random(-360, 360) }));
 
-    tl.to(items, {
-        x: "50vw", y: "50vh",
-        xPercent: -50, yPercent: -50,
-        rotate: 0,
-        stagger: { each: 0.05, from: "random" },
-        ease: "power2.inOut"
-    })
-    .to(items, {
-        x: () => gsap.utils.random(10, 90) + "vw",
-        y: () => gsap.utils.random(10, 90) + "vh",
-        rotate: () => gsap.utils.random(-45, 45),
-        scale: 1.1,
-        stagger: { each: 0.05, from: "random" },
-        ease: "power3.out"
-    }, ">-0.5");
-    
-    tl.fromTo("#people-title", { scale: 3, opacity: 0 }, { scale: 1, opacity: 1, ease: "power3.out"}, "<0.5")
-      .to("#people-title", { scale: 1.5, opacity: 0, ease: "power3.in"}, ">1");
-      
-    tl.to(items, {
-        x: "50vw", y: "150vh",
-        opacity: 0,
-        scale: 0.5,
-        filter: "blur(20px)",
-        stagger: { each: 0.05, from: "random" },
-        ease: "power2.in"
-    });
+    tl.to(items, { x: "50vw", y: "50vh", xPercent: -50, yPercent: -50, rotate: 0, stagger: { each: 0.05, from: "random" }, ease: "power2.inOut" })
+      .to(items, { x: () => gsap.utils.random(10, 90) + "vw", y: () => gsap.utils.random(10, 90) + "vh", rotate: () => gsap.utils.random(-45, 45), scale: 1.1, stagger: { each: 0.03, from: "random" }, ease: "power3.out" }, ">-0.5")
+      .fromTo("#people-title", { scale: 3, opacity: 0 }, { scale: 1, opacity: 1, ease: "power3.out"}, "<0.5")
+      .to("#people-title", { scale: 1.5, opacity: 0, ease: "power3.in"}, ">1.5")
+      .to(items, { x: "50vw", y: "150vh", opacity: 0, scale: 0.5, filter: "blur(20px)", stagger: { each: 0.03, from: "random" }, ease: "power2.in" });
 }
 
-// --- 섹션 5: 메뉴 그리드 애니메이션 ---
+// 섹션 5: 메뉴 그리드
 function setupMenuGridSection() {
-    gsap.utils.toArray('.grid-container').forEach(container => {
+    // ScrollTrigger는 동적으로 생성된 .grid-container를 감지해야 하므로, refresh() 이후에 실행되거나 MatchMedia를 사용하는 것이 안정적입니다.
+    // 여기서는 ScrollTrigger.refresh()가 마지막에 호출되므로 괜찮습니다.
+    gsap.utils.toArray('.grid-container').forEach((container) => {
         gsap.from(container.querySelectorAll('.grid-item'), {
             scrollTrigger: {
                 trigger: container,
-                start: 'top 80%',
-                end: 'bottom 60%',
+                start: 'top 85%',
                 toggleActions: 'play none none reverse',
             },
-            opacity: 0,
-            y: 50,
-            scale: 0.9,
-            stagger: 0.05,
-            duration: 0.5,
-            ease: 'power3.out'
+            opacity: 0, y: 60, scale: 0.95, stagger: 0.08, duration: 0.8, ease: 'power3.out'
         });
     });
 }
 
-// --- 섹션 6: 외관 & 마무리 애니메이션 ---
+// 섹션 6: 외관 & 마무리
 function setupExteriorSection() {
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: "#exterior-section",
-            pin: true,
-            scrub: 1,
-            start: "top top",
-            end: "+=200%"
-        }
-    });
+    const tl = gsap.timeline({ scrollTrigger: { trigger: "#exterior-section", pin: true, scrub: 1, start: "top top", end: "+=250%" } });
     
-    const backgrounds = [
-        "https://images.unsplash.com/photo-1505275350441-83dcda8eeef5?w=1920&q=80",
-        "https://images.unsplash.com/photo-1464207687429-7505649dae38?w=1920&q=80",
-        "https://images.unsplash.com/photo-1477763858572-cda7deaa9bc5?w=1920&q=80"
-    ];
-    
-    gsap.set("#final-text-container", { opacity: 0 });
+    gsap.set("#final-text-container", { opacity: 0, scale: 0.8 });
     gsap.set("#exterior-bg", { scale: 1.2 });
 
     tl.to("#exterior-bg", { scale: 1, ease: "none" });
 
-    backgrounds.forEach((bg) => {
-        tl.to("#exterior-bg", {
-            opacity: 0.3,
-            duration: 0.5,
-            onComplete: () => {
-                gsap.set("#exterior-bg", { backgroundImage: `url(${bg})` });
-            }
-        })
-        .to("#exterior-bg", { opacity: 1, duration: 0.5 });
+    images.exterior.forEach(bg => {
+        tl.to("#exterior-bg", { opacity: 0.3, duration: 0.5, onComplete: () => gsap.set("#exterior-bg", { backgroundImage: `url(${bg})` }) })
+          .to("#exterior-bg", { opacity: 1, duration: 0.5 });
     });
 
-    tl.to("#final-text-container", { opacity: 1, duration: 1 }, ">-1");
+    tl.to("#final-text-container", { opacity: 1, scale: 1, duration: 1, ease: "power3.out" }, ">-1");
     
     const finalTitle = document.querySelector("#final-title");
-    const text = "Find Your Moment";
-    tl.to(finalTitle, {
-        text: {
-            value: text,
-            delimiter: "",
-        },
-        duration: text.length * 0.1,
-        ease: "none"
-    });
+    const text = "Your Moment Awaits";
+    tl.to(finalTitle, { text: { value: text, delimiter: "" }, duration: text.length * 0.1, ease: "none" });
 }
 
-// --- 모든 애니메이션 실행 ---
+// --- 5. 모든 기능 실행 ---
 window.addEventListener("load", () => {
+    setupHeaderAndMenu();
     populateContent();
+    
+    // GSAP 애니메이션 설정
     setupHeroSection();
     setupBeanSection();
     setupInteriorSection();
     setupPeopleSection();
-    setupMenuGridSection();
+    setupMenuGridSection(); // 동적 생성 후 호출
     setupExteriorSection();
 
+    // 모든 DOM 변경 및 애니메이션 설정 후 ScrollTrigger 재계산
     ScrollTrigger.refresh();
 });
+
