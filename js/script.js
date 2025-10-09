@@ -1,3 +1,6 @@
+// 페이지 로드 시 스크롤 위치를 최상단으로 강제합니다.
+history.scrollRestoration = 'manual';
+
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
 // --- 1. 이미지 데이터 ---
@@ -103,6 +106,20 @@ function setupHeaderAndMenu() {
 
 // --- 3. 동적 컨텐츠 생성 ---
 function populateContent() {
+    const heroSection = document.querySelector("#hero-section .sticky");
+    if(heroSection) {
+        // 배경 비디오 생성 및 추가
+        const video = document.createElement('video');
+        video.id = 'hero-video';
+        video.src = 'https://videos.pexels.com/video-files/4782054/4782054-hd_1920_1080_25fps.mp4';
+        video.autoplay = true;
+        video.loop = true;
+        video.muted = true;
+        video.playsInline = true;
+        video.className = 'absolute top-0 left-0 w-full h-full object-cover -z-10 opacity-50';
+        heroSection.prepend(video);
+    }
+
     // 섹션 1: 히어로 카드 동적 생성
     const cardStack = document.querySelector("#card-stack");
     if(cardStack) {
@@ -160,7 +177,7 @@ function setupHeroSection() {
             trigger: "#hero-section",
             start: "top top",
             end: "bottom top", // Pin for the duration of one screen height
-            scrub: 1.2, // A slightly higher scrub value can feel smoother
+            scrub: 1.2,
             pin: true,
         }
     });
@@ -174,36 +191,31 @@ function setupHeroSection() {
         transformOrigin: "center center" 
     });
     
-    // Initial entrance animation (remains the same as user liked it)
+    // 페이지 로드 시 진입 애니메이션
     gsap.from("#hero-title", { duration: 1.5, y: 100, opacity: 0, ease: "power4.out", delay: 0.5 });
     gsap.from("#hero-subtitle", { duration: 1.5, y: 50, opacity: 0, ease: "power4.out", delay: 0.8 });
     gsap.from(cards, { duration: 1.5, scale: 0, opacity: 0, stagger: 0.1, ease: "power4.out", delay: 1.2 });
 
-    // Start fading out the text as soon as scrolling begins
+    // 스크롤 시작 시 텍스트 페이드 아웃
     tl.to(["#hero-title", "#hero-subtitle"], { 
         opacity: 0, 
         duration: 0.4 
     }, 0);
 
-    // New, smoother card animation for the scroll
+    // 스크롤에 따른 카드 펼치기 애니메이션
     cards.forEach((card, i) => {
-        // 1. Gently spread the cards out horizontally to create a fanned effect
         tl.to(card, {
-            x: (i - (cards.length - 1) / 2) * 70, // Spread cards from the center
-            rotateZ: (i - (cards.length - 1) / 2) * 4, // Add a slight tilt
+            x: (i - (cards.length - 1) / 2) * 80, // 중앙에서부터 카드를 펼칩니다.
+            rotateZ: (i - (cards.length - 1) / 2) * 5, // 약간의 회전을 추가합니다.
             ease: "power1.inOut"
-        }, 0.1); // Start this animation early in the scroll
-
-        // 2. Gather all cards back to the center, scale them down, and fade them out
-        // This creates a smooth transition to the next section
-        tl.to(card, {
-            x: 0,
-            rotateZ: 0,
-            scale: 0.3,
-            opacity: 0,
-            ease: "power2.in"
-        }, 0.6); // Start the exit animation in the latter half of the scroll
+        }, 0); // 스크롤 시작과 동시에 애니메이션을 시작합니다.
     });
+
+    // 스크롤이 끝나기 전에 배경 비디오를 서서히 투명하게 만듭니다.
+    tl.to("#hero-video", {
+        opacity: 0,
+        ease: "power1.in"
+    }, 0.5); // 애니메이션 중간 지점부터 비디오가 사라지기 시작합니다.
 }
 
 function setupBeanSection() {
@@ -307,6 +319,9 @@ function setupExteriorSection() {
 
 // --- 5. 모든 기능 실행 ---
 window.addEventListener("load", () => {
+    // 스크롤을 최상단으로 이동
+    window.scrollTo(0, 0);
+
     populateContent();
     setupHeaderAndMenu();
     
