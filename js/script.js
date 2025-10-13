@@ -1,22 +1,12 @@
 /**
  * Interactive Website Script - Mobile Optimized
  *
- * [최적화 주요 변경 사항]
- * 1.  **이미지 지연 로딩 (Lazy Loading) 및 반응형 이미지 (srcset)**
- * - 화면에 보이지 않는 이미지는 나중에 로드하여 초기 로딩 속도를 대폭 개선합니다.
- * - 화면 크기에 맞는 이미지를 로드하여 불필요한 데이터 사용을 줄입니다.
- *
- * 2.  **모바일 환경 비디오 로딩 방지**
- * - 데이터 소모가 큰 배경 비디오는 모바일에서 로드하지 않고, 대신 정적 이미지를 표시하도록 설정합니다. (CSS에서 처리 권장)
- *
- * 3.  **애니메이션 부하 감소**
- * - 모바일에서는 애니메이션에 사용되는 요소(파티클 등)의 개수를 줄여 CPU/GPU 부담을 완화합니다.
- *
- * 4.  **ScrollTrigger 성능 개선**
- * - ScrollTrigger.refresh() 호출 시점을 명확히 하고, 불필요한 계산을 줄입니다.
- *
- * 5.  **CSS 하드웨어 가속 유도**
- * - 애니메이션이 적용될 요소에 `will-change` 속성을 부여하여 브라우저가 렌더링을 최적화하도록 돕니다. (JS로 일부 적용, 실제로는 CSS 파일에 추가하는 것을 권장)
+ * [수정 사항]
+ * 1. **외부 이미지 데이터 로딩**: 기존에 코드 내에 있던 이미지 URL들을 `images.json` 파일로 분리하고,
+ * 페이지 로드 시 fetch API를 사용하여 비동기적으로 불러오도록 수정했습니다.
+ * 이를 통해 이미지 관리가 용이해집니다.
+ * 2. **비동기 처리**: 이미지 데이터가 완전히 로드된 후에 컨텐츠 생성 및 애니메이션 설정 함수가 실행되도록
+ * async/await 구문을 사용하여 코드 실행 순서를 보장합니다.
  */
 
 // 페이지 로드 시 스크롤 위치를 최상단으로 강제합니다.
@@ -29,70 +19,7 @@ window.onbeforeunload = function () {
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
-// --- 1. 이미지 데이터 ---
-const images = {
-    beans: [
-        'https://images.unsplash.com/photo-1572491410294-7a38f711a6fa?w=200',
-        'https://images.unsplash.com/photo-1599380816399-6a3f4a382b3a?w=200',
-        'https://images.unsplash.com/photo-1552346986-7e72a4ab1b54?w=200',
-        'https://images.unsplash.com/photo-1606891834379-33a41b559286?w=200',
-        'https://images.unsplash.com/photo-1509042239860-f550ce711a69?w=200'
-    ],
-    drinks: [
-        'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400',
-        'https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?w=400',
-        'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400',
-        'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400',
-        'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400',
-        'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400',
-        'https://images.unsplash.com/photo-1561047029-3000c68339ca?w=400',
-        'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400',
-        'https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=400',
-        'https://images.unsplash.com/photo-1560769684-55063f1bc56a?w=400'
-    ],
-    interior: [
-        'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400',
-        'https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=400',
-        'https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?w=400',
-        'https://images.unsplash.com/photo-1571501679680-de32f1e7aad4?w=400',
-        'https://images.unsplash.com/photo-1463797221720-6b07e6426c24?w=400',
-        'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=400',
-        'https://images.unsplash.com/photo-1516450364592-53a9ffa3e7a3?w=400',
-        'https://images.unsplash.com/photo-1587080413959-06b859fb1070?w=400',
-        'https://images.unsplash.com/photo-1590080665780-6b9c6d501f73?w=400',
-        'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400'
-    ],
-    people: [
-        'https://images.unsplash.com/photo-1542838132-92c53300491e?w=400',
-        'https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=400',
-        'https://images.unsplash.com/photo-1521791055366-0d553872125f?w=400',
-        'https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?w=400',
-        'https://images.unsplash.com/photo-1565688534245-05d6b5be184a?w=400',
-        'https://images.unsplash.com/photo-1498804103079-a6351b050096?w=400'
-    ],
-    barista: [
-        'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400',
-        'https://images.unsplash.com/photo-1565689876693-9b5f499c9d47?w=400',
-        'https://images.unsplash.com/photo-1534778101976-62847782c213?w=400',
-        'https://images.unsplash.com/photo-1560717789-0ac7c58ac90a?w=400',
-        'https://images.unsplash.com/photo-1562059395-0ae2e4e6ad6a?w=400',
-        'https://images.unsplash.com/photo-1560684352-8497838da222?w=400',
-        'https://images.unsplash.com/photo-1569870499705-504a2566c56f?w=400'
-    ],
-    exterior: [
-        'https://images.unsplash.com/photo-1571624436279-b272aff752b5?w=1920&q=80',
-        'https://images.unsplash.com/photo-1505275350441-83dcda8eeef5?w=1920&q=80',
-        'https://images.unsplash.com/photo-1464207687429-7505649dae38?w=1920&q=80',
-        'https://images.unsplash.com/photo-1477763858572-cda7deaa9bc5?w=1920&q=80'
-    ],
-    grid: {
-        'Desserts & Foods': ["https://images.unsplash.com/photo-1559715745-e1b33a271c8f?w=400", "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400", "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=400", "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400", "https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?w=400", "https://images.unsplash.com/photo-1570194065650-2f276f46d38c?w=400"],
-        'Unique Interiors': ["https://images.unsplash.com/photo-1590080665780-6b9c6d_501f73?w=400", "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400", "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=400", "https://images.unsplash.com/photo-1571501679680-de32f1e7aad4?w=400", "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400", "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=400"],
-        'Terrace & Outdoor': ["https://images.unsplash.com/photo-1542181961-9590d0c79dab?w=400", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400", "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400", "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400", "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=400", "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=400"],
-        'From Our Baristas': ["https://images.unsplash.com/photo-1565689876693-9b5f499c9d47?w=400", "https://images.unsplash.com/photo-1534778101976-62847782c213?w=400", "https://images.unsplash.com/photo-1560717789-0ac7c58ac90a?w=400", "https://images.unsplash.com/photo-1562059395-0ae2e4e6ad6a?w=400", "https://images.unsplash.com/photo-1560684352-8497838da222?w=400", "https://images.unsplash.com/photo-1569870499705-504a2566c56f?w=400"],
-        'More Moments': ["https://images.unsplash.com/photo-1572119865084-43b2cbd63db8?w=400", "https://images.unsplash.com/photo-1570968915860-54f5c8f1badd?w=400", "https://images.unsplash.com/photo-1570996914361-86d12a9e6d70?w=400", "https://images.unsplash.com/photo-1477763858572-cda7deaa9bc5?w=400", "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400"]
-    }
-};
+// --- [수정] 이미지 데이터는 외부 JSON 파일에서 불러옵니다 ---
 
 // --- 2. UI 및 이벤트 핸들러 설정 ---
 function setupHeaderAndMenu() {
@@ -120,10 +47,10 @@ function setupHeaderAndMenu() {
 }
 
 // --- 3. 동적 컨텐츠 생성 ---
-function populateContent() {
+// [수정] images 객체를 인자로 받도록 변경
+function populateContent(images) {
     const heroSection = document.querySelector("#hero-section .sticky");
     if(heroSection) {
-        // [수정] 모바일/데스크톱 구분 없이 비디오를 항상 로드합니다.
         const video = document.createElement('video');
         video.id = 'hero-video';
         video.src = 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4';
@@ -140,10 +67,8 @@ function populateContent() {
         images.drinks.forEach(url => {
             const card = document.createElement('div');
             card.className = 'card';
-            // [수정] 바로 style을 지정하는 대신 data-src를 사용하여 나중에 로드합니다.
-            // 실제 배경 이미지는 GSAP 애니메이션 시작 시점에 적용하여 성능을 확보합니다.
             card.dataset.src = url; 
-            card.style.willChange = 'transform, opacity'; // [추가] 애니메이션 성능 최적화
+            card.style.willChange = 'transform, opacity';
             cardStack.appendChild(card);
         });
     }
@@ -154,9 +79,9 @@ function populateContent() {
         peopleAndBaristas.forEach(url => {
             const item = document.createElement("div");
             item.className = "scatter-item";
-            item.dataset.src = url; // [수정] 데이터 소스 사용
+            item.dataset.src = url;
             item.style.backgroundImage = `url(${url})`;
-            item.style.willChange = 'transform, opacity, filter'; // [추가] 애니메이션 성능 최적화
+            item.style.willChange = 'transform, opacity, filter';
             scatterContainer.appendChild(item);
         });
     }
@@ -175,9 +100,8 @@ function populateContent() {
             images.grid[category].forEach(url => {
                 const item = document.createElement("div");
                 item.className = "grid-item group";
-                item.style.willChange = 'transform, opacity'; // [추가] 애니메이션 성능 최적화
+                item.style.willChange = 'transform, opacity';
                 
-                // [수정] 이미지에 lazy loading과 srcset을 적용하여 모바일 최적화
                 const cleanUrl = url.split('?')[0];
                 item.innerHTML = `<img 
                     src="${cleanUrl}?w=400&q=80" 
@@ -196,7 +120,8 @@ function populateContent() {
 }
 
 // --- 4. GSAP 애니메이션 설정 ---
-function setupAnimations() {
+// [수정] images 객체를 인자로 받도록 변경
+function setupAnimations(images) {
     gsap.matchMedia().add({
         isDesktop: `(min-width: 768px)`,
         isMobile: `(max-width: 767px)`
@@ -208,7 +133,6 @@ function setupAnimations() {
         if (cards.length > 0) {
             gsap.set(cards, { top: '50%', left: '50%', xPercent: -50, yPercent: -50 });
 
-            // [추가] 카드가 화면에 보일 때 배경 이미지를 로드합니다.
             cards.forEach(card => {
                 if(card.dataset.src) {
                     card.style.backgroundImage = `url(${card.dataset.src})`;
@@ -228,12 +152,11 @@ function setupAnimations() {
                     pin: true,
                 }
             });
-
-            // [수정] 모바일/데스크톱 구분 없이 비디오 투명도 애니메이션을 적용합니다.
+            
             tlHero.to("#hero-video", { opacity: 0, ease: "power1.inOut" }, 0);
             
             cards.forEach((card, i) => {
-                const spread = isDesktop ? 80 : 30; // [수정] 모바일에서 펼쳐지는 간격 축소
+                const spread = isDesktop ? 80 : 30;
                 tlHero.to(card, {
                     x: (i - (cards.length - 1) / 2) * spread,
                     rotateZ: (i - (cards.length - 1) / 2) * 5,
@@ -251,14 +174,13 @@ function setupAnimations() {
         // --- Bean Section ---
         const beanContainer = document.getElementById("bean-container");
         if (beanContainer) {
-            // [수정] 모바일에서는 콩(bean) 파티클 개수를 줄여 부하 감소
             const beanCount = isMobile ? 20 : 50; 
             const beanImages = images.beans;
             for (let i = 0; i < beanCount; i++) {
                 let bean = document.createElement("div");
                 bean.className = "bean";
                 bean.style.backgroundImage = `url('${beanImages[Math.floor(Math.random() * beanImages.length)]}')`;
-                bean.style.willChange = 'transform, opacity'; // [추가]
+                bean.style.willChange = 'transform, opacity';
                 beanContainer.appendChild(bean);
             }
             const beans = gsap.utils.toArray(".bean");
@@ -273,9 +195,6 @@ function setupAnimations() {
         // --- Interior Section ---
         const horizontalSection = document.querySelector('.section-horizontal-container');
         if (horizontalSection) {
-            // [수정] 모바일에서는 가로 스크롤 애니메이션을 비활성화하고 세로로 쌓이도록 할 수 있습니다.
-            // 여기서는 코드를 유지하되, CSS에서 @media 규칙으로 레이아웃을 변경하는 것을 권장합니다.
-            // 예: @media (max-width: 767px) { .section-horizontal-container { flex-direction: column; } }
             const mainTween = gsap.to(horizontalSection, {
                 x: () => -(horizontalSection.scrollWidth - window.innerWidth),
                 ease: "none",
@@ -320,7 +239,7 @@ function setupAnimations() {
                 .to(scatterItems, { x: () => gsap.utils.random(10, 90) + "vw", y: () => gsap.utils.random(10, 90) + "vh", rotate: () => gsap.utils.random(-45, 45), scale: 1.1, stagger: { each: 0.03, from: "random" }, ease: "power3.out" }, ">-0.5")
                 .fromTo("#people-title", { scale: 3, opacity: 0 }, { scale: 1, opacity: 1, ease: "power3.out"}, "<0.5")
                 .to("#people-title", { scale: 1.5, opacity: 0, ease: "power3.in"}, ">1.5")
-                .to(scatterItems, { x: "50vw", y: "150vh", opacity: 0, scale: 0.5, filter: "blur(10px)", stagger: { each: 0.03, from: "random" }, ease: "power2.in" }); // [수정] blur 값 감소
+                .to(scatterItems, { x: "50vw", y: "150vh", opacity: 0, scale: 0.5, filter: "blur(10px)", stagger: { each: 0.03, from: "random" }, ease: "power2.in" });
         }
 
         // --- Menu Grid Section ---
@@ -359,17 +278,35 @@ function setupAnimations() {
 
 
 // --- 5. 모든 기능 실행 ---
+// [수정] 메인 실행 함수를 async로 변경하여 이미지 로딩을 기다립니다.
+async function main() {
+    try {
+        // 'images.json' 파일에서 이미지 데이터를 불러옵니다.
+        // Netlify에 올릴 때 파일 경로가 다르면 이 부분을 수정해야 할 수 있습니다. (예: '/assets/images.json')
+        const response = await fetch('images.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const images = await response.json();
+
+        // 이미지 데이터가 로드된 후 나머지 함수들을 실행합니다.
+        populateContent(images);
+        setupHeaderAndMenu();
+        setupAnimations(images);
+
+        window.addEventListener('load', () => {
+            ScrollTrigger.refresh();
+        });
+
+    } catch (error) {
+        console.error("Could not load image data:", error);
+        // [추가] 이미지 로딩 실패 시 사용자에게 알릴 수 있는 UI 처리
+        document.body.innerHTML = '<div style="color: white; text-align: center; padding-top: 50px;">콘텐츠를 불러오는 데 실패했습니다. 페이지를 새로고침 해주세요.</div>';
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo(0, 0);
-
-    populateContent();
-    setupHeaderAndMenu();
-    setupAnimations(); // [수정] 애니메이션 관련 함수들을 하나로 묶어 관리
-
-    // [수정] 이미지 로딩 및 DOM 변경 후 ScrollTrigger 재계산
-    // setTimeout 대신 window.onload를 사용하여 모든 리소스(이미지 포함)가 로드된 후 refresh를 실행하는 것이 더 안정적일 수 있습니다.
-    window.addEventListener('load', () => {
-        ScrollTrigger.refresh();
-    });
+    main(); // 메인 함수 실행
 });
 
