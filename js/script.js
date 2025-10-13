@@ -2,12 +2,9 @@
  * Interactive Website Script - Mobile Optimized
  *
  * [수정 사항]
- * 1. **이미지 데이터 폴백(Fallback) 추가**: fetch를 통해 'images.json' 파일을 불러오는 것을 시도합니다.
- * 만약 파일이 없어서 404 오류가 발생하더라도 사이트가 멈추지 않도록, catch 블록에서
- * 기본 이미지 데이터를 정의하고 로드하여 페이지가 정상적으로 표시되도록 수정했습니다.
- * 이를 통해 개발 중에도 항상 사이트의 시각적 확인이 가능합니다.
- * 2. **비동기 처리**: 이미지 데이터가 완전히 로드된 후에 컨텐츠 생성 및 애니메이션 설정 함수가 실행되도록
- * async/await 구문을 사용하여 코드 실행 순서를 보장합니다.
+ * 1. **이미지 데이터 경로 수정**: fetch를 통해 'assets/images.json' 파일을 올바른 경로에서 불러오도록 수정했습니다.
+ * 2. **이미지 데이터 폴백(Fallback) 추가**: fetch 실패 시(파일이 없거나 경로가 잘못된 경우) 사이트가 멈추지 않도록,
+ * 기본 이미지 데이터를 로드하여 페이지가 정상적으로 표시되도록 합니다.
  */
 
 // 페이지 로드 시 스크롤 위치를 최상단으로 강제합니다.
@@ -51,7 +48,7 @@ function populateContent(images) {
     if(heroSection) {
         const video = document.createElement('video');
         video.id = 'hero-video';
-        video.src = 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4';
+        video.src = 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h24/720/Big_Buck_Bunny_720_10s_1MB.mp4';
         video.autoplay = true;
         video.loop = true;
         video.muted = true;
@@ -278,10 +275,9 @@ function setupAnimations(images) {
 async function main() {
     let images;
     try {
-        // 'images.json' 파일 로드를 시도합니다.
-        const response = await fetch('images.json');
+        // [수정] 'assets/images.json' 파일 로드를 시도합니다.
+        const response = await fetch('assets/images.json');
         if (!response.ok) {
-            // 응답이 성공적이지 않으면 오류를 발생시켜 catch 블록으로 넘깁니다.
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         images = await response.json();
@@ -289,8 +285,6 @@ async function main() {
     } catch (error) {
         console.warn("Could not load images.json from server. Using fallback data.", error);
         
-        // [수정] fetch 실패 시, 여기서 기본 이미지 데이터를 정의합니다.
-        // 이 데이터 덕분에 images.json 파일이 없어도 사이트가 깨지지 않습니다.
         images = {
             "beans": ["https://images.unsplash.com/photo-1509042239860-f550ce711a69?w=200"],
             "drinks": ["https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400", "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400", "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400", "https://images.unsplash.com/photo-1561047029-3000c68339ca?w=400"],
@@ -322,3 +316,4 @@ document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo(0, 0);
     main(); // 메인 함수 실행
 });
+
