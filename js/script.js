@@ -2,9 +2,10 @@
  * Interactive Website Script - Mobile Optimized
  *
  * [수정 사항]
- * 1. **외부 이미지 데이터 로딩**: 기존에 코드 내에 있던 이미지 URL들을 `images.json` 파일로 분리하고,
- * 페이지 로드 시 fetch API를 사용하여 비동기적으로 불러오도록 수정했습니다.
- * 이를 통해 이미지 관리가 용이해집니다.
+ * 1. **이미지 데이터 폴백(Fallback) 추가**: fetch를 통해 'images.json' 파일을 불러오는 것을 시도합니다.
+ * 만약 파일이 없어서 404 오류가 발생하더라도 사이트가 멈추지 않도록, catch 블록에서
+ * 기본 이미지 데이터를 정의하고 로드하여 페이지가 정상적으로 표시되도록 수정했습니다.
+ * 이를 통해 개발 중에도 항상 사이트의 시각적 확인이 가능합니다.
  * 2. **비동기 처리**: 이미지 데이터가 완전히 로드된 후에 컨텐츠 생성 및 애니메이션 설정 함수가 실행되도록
  * async/await 구문을 사용하여 코드 실행 순서를 보장합니다.
  */
@@ -18,8 +19,6 @@ window.onbeforeunload = function () {
 };
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
-
-// --- [수정] 이미지 데이터는 외부 JSON 파일에서 불러옵니다 ---
 
 // --- 2. UI 및 이벤트 핸들러 설정 ---
 function setupHeaderAndMenu() {
@@ -47,7 +46,6 @@ function setupHeaderAndMenu() {
 }
 
 // --- 3. 동적 컨텐츠 생성 ---
-// [수정] images 객체를 인자로 받도록 변경
 function populateContent(images) {
     const heroSection = document.querySelector("#hero-section .sticky");
     if(heroSection) {
@@ -120,7 +118,6 @@ function populateContent(images) {
 }
 
 // --- 4. GSAP 애니메이션 설정 ---
-// [수정] images 객체를 인자로 받도록 변경
 function setupAnimations(images) {
     gsap.matchMedia().add({
         isDesktop: `(min-width: 768px)`,
@@ -278,35 +275,50 @@ function setupAnimations(images) {
 
 
 // --- 5. 모든 기능 실행 ---
-// [수정] 메인 실행 함수를 async로 변경하여 이미지 로딩을 기다립니다.
 async function main() {
+    let images;
     try {
-        // 'images.json' 파일에서 이미지 데이터를 불러옵니다.
-        // Netlify에 올릴 때 파일 경로가 다르면 이 부분을 수정해야 할 수 있습니다. (예: '/assets/images.json')
+        // 'images.json' 파일 로드를 시도합니다.
         const response = await fetch('images.json');
         if (!response.ok) {
+            // 응답이 성공적이지 않으면 오류를 발생시켜 catch 블록으로 넘깁니다.
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const images = await response.json();
-
-        // 이미지 데이터가 로드된 후 나머지 함수들을 실행합니다.
-        populateContent(images);
-        setupHeaderAndMenu();
-        setupAnimations(images);
-
-        window.addEventListener('load', () => {
-            ScrollTrigger.refresh();
-        });
+        images = await response.json();
 
     } catch (error) {
-        console.error("Could not load image data:", error);
-        // [추가] 이미지 로딩 실패 시 사용자에게 알릴 수 있는 UI 처리
-        document.body.innerHTML = '<div style="color: white; text-align: center; padding-top: 50px;">콘텐츠를 불러오는 데 실패했습니다. 페이지를 새로고침 해주세요.</div>';
+        console.warn("Could not load images.json from server. Using fallback data.", error);
+        
+        // [수정] fetch 실패 시, 여기서 기본 이미지 데이터를 정의합니다.
+        // 이 데이터 덕분에 images.json 파일이 없어도 사이트가 깨지지 않습니다.
+        images = {
+            "beans": ["https://images.unsplash.com/photo-1509042239860-f550ce711a69?w=200"],
+            "drinks": ["https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400", "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400", "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400", "https://images.unsplash.com/photo-1561047029-3000c68339ca?w=400"],
+            "interior": ["https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400", "https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?w=400"],
+            "people": ["https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=400", "https://images.unsplash.com/photo-1498804103079-a6351b050096?w=400"],
+            "barista": ["https://images.unsplash.com/photo-1534778101976-62847782c213?w=400", "https://images.unsplash.com/photo-1562059395-0ae2e4e6ad6a?w=400"],
+            "exterior": ["https://images.unsplash.com/photo-1505275350441-83dcda8eeef5?w=1920&q=80", "https://images.unsplash.com/photo-1477763858572-cda7deaa9bc5?w=1920&q=80"],
+            "grid": {
+                "Desserts & Foods": ["https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400", "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=400"],
+                "Unique Interiors": ["https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=400", "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400"],
+                "Terrace & Outdoor": ["https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400", "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400"],
+                "From Our Baristas": ["https://images.unsplash.com/photo-1534778101976-62847782c213?w=400", "https://images.unsplash.com/photo-1560684352-8497838da222?w=400"],
+                "More Moments": ["https://images.unsplash.com/photo-1570968915860-54f5c8f1badd?w=400", "https://images.unsplash.com/photo-1477763858572-cda7deaa9bc5?w=400"]
+            }
+        };
     }
+
+    // 이미지 데이터가 로드된 후 나머지 함수들을 실행합니다.
+    populateContent(images);
+    setupHeaderAndMenu();
+    setupAnimations(images);
+
+    window.addEventListener('load', () => {
+        ScrollTrigger.refresh();
+    });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo(0, 0);
     main(); // 메인 함수 실행
 });
-
