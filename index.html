@@ -14,43 +14,66 @@
 
     <!-- External Stylesheet Link -->
     <link rel="stylesheet" href="styles/style.css">
+
 </head>
 <body class="bg-[#1a1a1a] text-gray-200">
 
     <!-- Header & Navigation -->
     <header class="fixed top-0 w-full z-50 transition-all duration-300">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" id="logo" class="text-2xl font-bold transition-colors duration-300" style="font-family: 'Playfair Display', serif;">Cafe MAJI</a>
+            <a href="index.html" id="logo" class="text-2xl font-bold transition-colors duration-300">Cafe MAJI</a>
             <div class="hidden md:flex items-center space-x-6">
-                <a href="#about-us" class="nav-link">About</a>
-                <a href="#menu" class="nav-link">Menu</a>
-                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="menu.html" class="nav-link">Menu</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="https://www.yelp.com/biz/cafe-maji-artesia" target="_blank" class="nav-link text-xl">
+                    <i class="fab fa-yelp"></i>
+                </a>
             </div>
             <button id="mobile-menu-button" class="md:hidden text-2xl transition-colors duration-300">
                 <i class="fas fa-bars"></i>
             </button>
         </nav>
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 space-y-2 bg-black/80 backdrop-blur-sm rounded-b-lg shadow-lg">
-            <a href="#about-us" class="block py-2 px-3 hover:bg-gray-700 rounded">About</a>
-            <a href="#menu" class="block py-2 px-3 hover:bg-gray-700 rounded">Menu</a>
-            <a href="#gallery" class="block py-2 px-3 hover:bg-gray-700 rounded">Gallery</a>
+            <a href="about.html" class="block py-2 px-3 hover:bg-gray-700 rounded">About Us</a>
+            <a href="menu.html" class="block py-2 px-3 hover:bg-gray-700 rounded">Menu</a>
+            <a href="gallery.html" class="block py-2 px-3 hover:bg-gray-700 rounded">Gallery</a>
+            <a href="https://www.yelp.com/biz/cafe-maji-artesia" target="_blank" class="block py-2 px-3 hover:bg-gray-700 rounded">
+                <i class="fab fa-yelp mr-2"></i> Yelp
+            </a>
         </div>
     </header>
 
-    <!-- Section 1: Hero & 3D Card Stack (Drinks) -->
+    <!-- Section 1: Hero & 3D Card Stack (애니메이션 유지) -->
     <section id="hero-section" class="section">
         <div class="sticky top-0 w-full h-screen flex flex-col justify-center items-center overflow-hidden">
-            <!-- Background video will be prepended here by JS -->
             <h1 id="hero-title" class="font-serif-display text-6xl md:text-8xl lg:text-9xl z-10 text-shadow-lg text-amber-50">Welcome to MAJI</h1>
             <p id="hero-subtitle" class="text-xl md:text-2xl mt-4 z-10">A cute, trendy, and classy cafe experience.</p>
-            <div id="card-stack" class="absolute w-full h-full" style="perspective: 1000px;">
-                <!-- Cards are dynamically populated by script.js -->
+            <div id="card-stack" class="absolute w-full h-full">
             </div>
         </div>
     </section>
 
-    <!-- Section 2: Coffee Bean Cloud -->
+    <!-- [추가] About Section Preview -->
+    <section id="about" class="py-20 px-4 bg-[#1a1a1a]">
+        <div class="container mx-auto">
+            <h2 class="section-title">A Vibe for Every Occasion</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <img src="https://images.unsplash.com/photo-1559925333-a4e9a973c66f?q=80&w=1974&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/d1d5db?text=Cozy+Interior';" alt="Cafe MAJI Interior" class="rounded-lg shadow-xl w-full h-auto object-cover">
+                <div class="text-lg text-gray-300">
+                    <p class="mb-4">
+                        Cafe MAJI is more than just a coffee shop; it's a destination. Our super cool atmosphere is perfect for dates, Instagram photos, or simply enjoying a calm moment. 
+                    </p>
+                    <p class="mb-4">
+                        Designed to feel like a chic, high-school party, our space is decked out with countless details that create a unique and memorable experience.
+                    </p>
+                    <a href="about.html" class="btn">More About Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Coffee Bean Cloud (애니메이션 유지) -->
     <section id="bean-section" class="section bg-black">
         <div class="sticky top-0 w-full h-screen flex justify-center items-center">
             <div id="bean-container" class="absolute w-full h-full"></div>
@@ -60,8 +83,56 @@
             </div>
         </div>
     </section>
+    
+    <!-- [추가] Reviews Section -->
+    <section id="reviews" class="py-20 px-4 bg-[#1a1a1a]">
+        <div class="container mx-auto">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="info-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-amber-200 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-amber-700"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-100">Brandon Choi</p>
+                            <p class="text-sm text-gray-400">22 September 2025</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">"This place is really cute for a date and instagram pictures. The food is pretty good, nothing amazing, but good enough."</p>
+                </div>
+                <!-- Review 2 -->
+                <div class="info-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-amber-200 flex items-center justify-center mr-4">
+                             <i class="fas fa-user text-amber-700"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-100">Surabhi Vijay</p>
+                            <p class="text-sm text-gray-400">13 September 2025</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">"We stumbled upon this place... This is an adorable place, decked up with a zillion baubles... The service is friendly."</p>
+                </div>
+                <!-- Review 3 -->
+                <div class="info-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-amber-200 flex items-center justify-center mr-4">
+                             <i class="fas fa-user text-amber-700"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-100">Caleb Starkovich</p>
+                            <p class="text-sm text-gray-400">1 September 2025</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">"Super cool atmosphere! Every friend I have brought here absolutely loved it and had a great time."</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Section 3: Horizontal Scroll Gallery (Interior) -->
+    <!-- Section 3: Horizontal Scroll Gallery (애니메이션 유지) -->
     <section id="interior-section-wrapper" class="relative bg-[#2a2a2a]">
         <div class="section-horizontal-container">
             <div class="panel justify-start items-center p-12">
@@ -72,62 +143,134 @@
             </div>
             <div class="panel">
                 <div class="relative w-full h-full">
-                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1554118811-1e0d_58224f24?w=1920&q=80');"></div>
+                    <div class="absolute inset-0 bg-cover bg-center" id="interior-bg-1"></div>
                     <img src="https://images.unsplash.com/photo-1559925333-a4e9a973c66f?w=600" class="absolute top-1/4 left-1/4 gallery-image w-1/4 h-auto transform -rotate-6">
                     <img src="https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?w=600" class="absolute bottom-1/4 right-1/4 gallery-image w-1/3 h-auto transform rotate-3">
                 </div>
             </div>
-            <div class="panel bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1463797221720-6b07e6426c24?w=1920&q=80');">
+             <div class="panel bg-cover bg-center" id="interior-bg-2">
                  <h2 class="font-serif-display text-5xl md:text-7xl max-w-lg bg-black/50 p-6 rounded-lg backdrop-blur-sm">Beauty in Details</h2>
             </div>
-            <div class="panel items-start pt-24">
-                <div class="flex items-start justify-center space-x-8">
-                    <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=400" class="gallery-image transform translate-y-8 rotate-6">
-                    <img src="https://images.unsplash.com/photo-1516450364592-53a9ffa3e7a3?w=400" class="gallery-image transform -translate-y-12 -rotate-4">
-                    <img src="https://images.unsplash.com/photo-1587080413959-06b859fb1070?w=400" class="gallery-image transform translate-y-2 rotate-2">
-                </div>
-            </div>
-            <div class="panel justify-end items-end p-12 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1920&q=80')">
-                <div class="max-w-md text-right">
-                    <h2 class="font-serif-display text-5xl md:text-7xl text-shadow-lg">With a Good Book</h2>
-                    <p class="mt-6 text-lg bg-black/40 p-4 rounded">The perfect pause: a cup of coffee and a compelling story.</p>
-                </div>
-            </div>
-             <div class="panel">
-                <div class="flex items-center justify-center w-full h-full scale-110">
-                    <img src="https://images.unsplash.com/photo-1590080665780-6b9c6d_501f73?w=600" class="gallery-image w-1/5 transform -translate-x-1/2 -rotate-12">
-                    <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=600" class="gallery-image w-1/4 z-10 shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600" class="gallery-image w-1/5 transform translate-x-1/2 rotate-12">
+        </div>
+    </section>
+
+    <!-- [추가] Cafe Information Section -->
+    <section id="info" class="py-20 px-4 bg-[#1a1a1a]">
+        <div class="container mx-auto">
+            <h2 class="section-title">Cafe Information</h2>
+            <div class="bg-black p-8 rounded-xl shadow-lg">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 text-gray-300">
+                    <!-- Amenities -->
+                    <div>
+                        <h3 class="font-bold text-xl mb-4 text-amber-300 font-serif-display">Amenities & Features</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i> Offers Takeout</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i> Good for Groups, Kids, & Working</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i> Good for Brunch, Lunch, Dessert</li>
+                            <li class="flex items-center"><i class="fas fa-wifi text-green-500 mr-3"></i> Free Wi-Fi</li>
+                            <li class="flex items-center"><i class="fas fa-parking text-green-500 mr-3"></i> Street & Private Lot Parking</li>
+                            <li class="flex items-center"><i class="fas fa-restroom text-green-500 mr-3"></i> Gender-neutral restrooms</li>
+                             <li class="flex items-center"><i class="fas fa-times-circle text-red-500 mr-3"></i> No Reservations or Delivery</li>
+                             <li class="flex items-center"><i class="fas fa-times-circle text-red-500 mr-3"></i> No Outdoor Seating</li>
+                        </ul>
+                    </div>
+                    <!-- Payments & Safety -->
+                    <div>
+                        <h3 class="font-bold text-xl mb-4 text-amber-300 font-serif-display">Payments & Safety</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center"><i class="fas fa-credit-card text-green-500 mr-3"></i> Accepts Credit Cards</li>
+                            <li class="flex items-center"><i class="fab fa-apple-pay text-green-500 mr-3 text-2xl"></i> Accepts Apple Pay</li>
+                            <li class="flex items-center"><i class="fas fa-head-side-mask text-green-500 mr-3"></i> Masks required</li>
+                            <li class="flex items-center"><i class="fas fa-user-shield text-green-500 mr-3"></i> Staff wears masks</li>
+                            <li class="flex items-center"><i class="fab fa-android text-red-500 mr-3 text-2xl"></i> No Android Pay</li>
+                            <li class="flex items-center"><i class="fab fa-bitcoin text-red-500 mr-3 text-2xl"></i> No Cryptocurrency</li>
+                        </ul>
+                    </div>
+                    <!-- Atmosphere -->
+                    <div>
+                        <h3 class="font-bold text-xl mb-4 text-amber-300 font-serif-display">Atmosphere</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center"><i class="fas fa-star text-yellow-500 mr-3"></i> Hipster, Trendy, Classy, Casual</li>
+                            <li class="flex items-center"><i class="fas fa-volume-up text-blue-500 mr-3"></i> Moderate Noise Level</li>
+                            <li class="flex items-center"><i class="fas fa-dog text-red-500 mr-3"></i> Dogs Not Allowed</li>
+                            <li class="flex items-center"><i class="fas fa-wheelchair text-red-500 mr-3"></i> Not Wheelchair Accessible</li>
+                            <li class="flex items-center"><i class="fas fa-tv text-red-500 mr-3"></i> No TV</li>
+                            <li class="flex items-center"><i class="fas fa-bicycle text-red-500 mr-3"></i> No Bike Parking</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Section 4: Scatter Images (People) -->
+    <!-- Section 4: Scatter Images (애니메이션 유지) -->
     <section id="people-section" class="section bg-black">
         <div class="sticky top-0 w-full h-screen">
             <h2 id="people-title" class="font-serif-display text-6xl md:text-9xl text-outline absolute z-20">The MAJI Vibe</h2>
             <div id="scatter-container" class="absolute w-full h-full">
-                <!-- script.js populates this area -->
+            </div>
+        </div>
+    </section>
+
+    <!-- [추가] Visit Us Section -->
+     <section id="location" class="py-20 px-4 bg-[#1a1a1a]">
+        <div class="container mx-auto">
+             <h2 class="section-title">Visit Us</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-start bg-black p-8 rounded-xl shadow-lg">
+                <!-- Hours -->
+                <div>
+                    <h3 class="font-bold text-2xl mb-6 text-center text-amber-300 font-serif-display">Work Hours</h3>
+                    <div class="space-y-3 text-lg text-gray-300">
+                        <div class="flex justify-between border-b border-gray-700 pb-2"><span class="font-semibold">Monday</span> <span>1:00 PM - 11:00 PM</span></div>
+                        <div class="flex justify-between border-b border-gray-700 pb-2"><span class="font-semibold">Tuesday</span> <span>1:00 PM - 11:00 PM</span></div>
+                        <div class="flex justify-between border-b border-gray-700 pb-2"><span class="font-semibold">Wednesday</span> <span>1:00 PM - 11:00 PM</span></div>
+                        <div class="flex justify-between border-b border-gray-700 pb-2"><span class="font-semibold">Thursday</span> <span>1:00 PM - 11:00 PM</span></div>
+                        <div class="flex justify-between border-b border-gray-700 pb-2"><span class="font-semibold">Friday</span> <span>1:00 PM - 11:00 PM</span></div>
+                        <div class="flex justify-between border-b border-gray-700 pb-2"><span class="font-semibold">Saturday</span> <span>1:00 PM - 11:00 PM</span></div>
+                        <div class="flex justify-between"><span class="font-semibold">Sunday</span> <span>1:00 PM - 11:00 PM</span></div>
+                    </div>
+                </div>
+                <!-- Location -->
+                <div>
+                    <h3 class="font-bold text-2xl mb-6 text-center text-amber-300 font-serif-display">Our Location</h3>
+                    <div class="mb-4 text-center">
+                        <p class="font-bold text-gray-100 text-lg">Address</p>
+                        <p class="text-gray-300">12232 Artesia Blvd, Artesia, CA 90701, USA</p>
+                    </div>
+                    <div class="mb-6 text-center">
+                        <p class="font-bold text-gray-100 text-lg">Phone</p>
+                        <p class="text-gray-300">(562) 281-9511</p>
+                    </div>
+                    <div class="h-64 md:h-80 rounded-lg overflow-hidden shadow-inner">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3318.527376031238!2d-118.0864386847926!3d33.87611398069634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dd2d08310c1e57%3A0xe5a33b9e4725e141!2s12232%20Artesia%20Blvd%2C%20Artesia%2C%20CA%2090701!5e0!3m2!1sen!2sus!4v1664582930263!5m2!1sen!2sus" 
+                            width="100%" 
+                            height="100%" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
     
-    <!-- Section 5: Menu/Gallery Grid -->
+    <!-- Section 5: Menu/Gallery Grid (애니메이션 유지 및 기능 복원) -->
     <section id="menu-grid-section" class="relative py-20 px-4 bg-[#111]">
-        <h2 id="gallery" class="font-serif-display text-5xl md:text-7xl text-center mb-16">Glimpse of Our Cafe</h2>
-        <div id="about-us" class="max-w-7xl mx-auto">
-            <!-- Grid sections are dynamically populated by script.js -->
+        <h2 class="section-title">Glimpse of Our Cafe</h2>
+        <div class="max-w-7xl mx-auto">
+             <!-- Grid sections are dynamically populated by script.js -->
         </div>
         <div class="text-center mt-12">
              <a href="gallery.html" class="inline-block bg-amber-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-amber-700 transition-colors">View Full Gallery</a>
         </div>
     </section>
 
-    <!-- Section 6: Exterior & Outro -->
+    <!-- Section 6: Exterior & Outro (애니메이션 유지) -->
     <section id="exterior-section" class="section">
         <div class="sticky top-0 w-full h-screen flex justify-center items-center">
-            <div id="exterior-bg" class="absolute w-full h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1571624436279-b272aff752b5?w=1920&q=80');"></div>
+            <div id="exterior-bg" class="absolute w-full h-full bg-cover bg-center"></div>
             <div id="final-text-container" class="relative z-10 text-center bg-black/60 p-8 rounded-xl backdrop-blur-md">
                 <h2 id="final-title" class="font-serif-display text-4xl md:text-6xl text-amber-100"></h2>
                 <p id="final-subtitle" class="mt-4 text-lg">Find your new favorite spot.</p>
@@ -136,7 +279,7 @@
     </section>
     
     <!-- Footer -->
-    <footer id="menu" class="bg-gray-900 text-white py-12">
+    <footer class="bg-gray-900 text-white py-12">
         <div class="container mx-auto px-6 text-center">
             <p class="font-serif-display font-bold text-2xl mb-2 text-amber-300">Cafe MAJI</p>
             <p class="text-gray-400">12232 Artesia Blvd, Artesia, CA 90701</p>
@@ -160,3 +303,4 @@
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </body>
 </html>
+
