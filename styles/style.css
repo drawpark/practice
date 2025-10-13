@@ -33,6 +33,10 @@ body {
 /* ---------------------------------- */
 /* --- 1. 헤더 & 네비게이션 --- */
 /* ---------------------------------- */
+#logo {
+    font-family: 'Playfair Display', serif;
+}
+
 header .nav-link {
     position: relative;
     transition: color 0.3s ease;
@@ -58,27 +62,61 @@ header .nav-link:hover::after {
 
 
 /* ---------------------------------- */
-/* --- 2. 섹션 레이아웃 --- */
+/* --- 2. 섹션 레이아웃 & 신규 정보 섹션 스타일 --- */
 /* ---------------------------------- */
+/* [추가] 신규 정보 섹션 공통 스타일 */
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; /* 40px */
+    text-align: center;
+    margin-bottom: 3rem; /* 48px */
+    color: #d1d5db; /* gray-300 */
+}
+
+.info-card {
+    background-color: #1f2937; /* gray-800 */
+    padding: 2rem; /* 32px */
+    border-radius: 12px;
+    border: 1px solid #374151; /* gray-700 */
+    height: 100%; /* 카드의 높이를 통일 */
+}
+
+.btn {
+    display: inline-block;
+    background-color: #d97706; /* amber-600 */
+    color: white;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px 0 rgba(0,0,0,0.1);
+}
+.btn:hover {
+    background-color: #b45309; /* amber-700 */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px 0 rgba(0,0,0,0.15);
+}
+
 /* GSAP Pinning을 위한 섹션 높이 설정 */
-/* #hero-section의 min-height를 제거하여 불필요한 공백 문제를 해결했습니다. */
 #bean-section, #people-section, #exterior-section { min-height: 100vh; }
 
 #interior-section-wrapper {
   height: 100vh;
-  overflow: hidden; /* JS가 x축 스크롤을 제어하므로 필수 */
+  overflow: hidden; 
 }
 
 .section-horizontal-container {
   display: flex;
-  width: 600%; /* 6개의 패널 */
+  width: 300%; /* 3개의 패널 */
   height: 100%;
 }
 
 .panel {
   width: 100vw;
   height: 100vh;
-  flex-shrink: 0; /* 패널이 줄어들지 않도록 설정 */
+  flex-shrink: 0; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -98,7 +136,7 @@ header .nav-link:hover::after {
   background-position: center;
   border-radius: 1rem;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  will-change: transform, opacity; /* 애니메이션 성능 최적화 */
+  will-change: transform, opacity; 
 }
 
 
@@ -135,6 +173,14 @@ header .nav-link:hover::after {
 /* ---------------------------------- */
 /* --- 5. 가로 스크롤 갤러리 --- */
 /* ---------------------------------- */
+/* [추가] 패널 배경 이미지 */
+#interior-bg-1 {
+    background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1920&q=80');
+}
+#interior-bg-2 {
+    background-image: url('https://images.unsplash.com/photo-1463797221720-6b07e6426c24?w=1920&q=80');
+}
+
 .gallery-image {
   border-radius: 0.75rem;
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
@@ -196,15 +242,31 @@ header .nav-link:hover::after {
 /* --- 9. 모바일 반응형 쿼리 --- */
 /* ---------------------------------- */
 @media (max-width: 767px) {
+    /* [개선] 폰트 크기 조정 */
+    .section-title {
+        font-size: 2rem; /* 32px */
+        margin-bottom: 2rem;
+    }
+
+    h1#hero-title {
+        font-size: 3rem; /* 48px */
+    }
+
     /* 히어로 카드 크기 줄이기 */
     #card-stack .card {
       width: 200px;
       height: 300px;
     }
 
+    /* [개선] 정보 섹션 패딩 조정 */
+    #about, #reviews, #info, #location {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+
     /* 수평 스크롤 패널 패딩 줄이기 */
     .panel {
-        padding: 2rem;
+        padding: 1.5rem;
     }
 
     /* 스캐터 아이템 크기 줄이기 */
@@ -213,5 +275,8 @@ header .nav-link:hover::after {
         height: 250px;
     }
 
-    /* 폰트 크기는 Tailwind CSS의 반응형 클래스(md:, lg:)가 처리합니다. */
+    /* [추가] 카페 정보 그리드 1열로 변경 (Tailwind가 처리하지만, 명시적 확인) */
+    #info .grid, #location .grid {
+        grid-template-columns: 1fr;
+    }
 }
