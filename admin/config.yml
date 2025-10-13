@@ -1,0 +1,35 @@
+# Netlify CMS 설정 파일
+
+# 백엔드: Netlify가 GitHub 저장소와 통신하도록 설정
+backend:
+  name: git-gateway
+  branch: main # 또는 기본 브랜치 이름
+
+# 미디어 파일(업로드할 이미지)이 저장될 경로 설정
+media_folder: "assets/uploads" # 실제 이미지는 이 폴더에 저장됩니다.
+public_folder: "/assets/uploads" # 웹사이트에서 이미지를 불러올 경로입니다.
+
+# 콘텐츠 컬렉션: images.json 파일을 관리하기 위한 설정
+collections:
+  - name: "images" # CMS 사이드바에 표시될 이름
+    label: "웹사이트 이미지 관리" # CMS 관리 화면 제목
+    files:
+      - file: "images.json" # 실제 수정할 파일
+        label: "이미지 목록" # 이 파일에 대한 설명
+        name: "imageList"
+        fields: # JSON 파일의 각 키(key)에 해당하는 필드를 정의합니다.
+          - {label: "원두 이미지", name: "beans", widget: "list", field: {label: "이미지 URL", name: "url", widget: "image"}}
+          - {label: "음료 이미지", name: "drinks", widget: "list", field: {label: "이미지 URL", name: "url", widget: "image"}}
+          - {label: "인테리어 이미지", name: "interior", widget: "list", field: {label: "이미지 URL", name: "url", widget: "image"}}
+          - {label: "인물 이미지", name: "people", widget: "list", field: {label: "이미지 URL", name: "url", widget: "image"}}
+          - {label: "바리스타 이미지", name: "barista", widget: "list", field: {label: "이미지 URL", name: "url", widget: "image"}}
+          - {label: "외부 전경 이미지", name: "exterior", widget: "list", field: {label: "이미지 URL", name: "url", widget: "image"}}
+          - label: "메뉴 그리드 이미지"
+            name: "grid"
+            widget: "object"
+            fields:
+              - {label: "디저트 & 음식", name: "Desserts & Foods", widget: "list", field: {label: "이미지 URL", name: "url", widget: "image"}}
+              - {label: "특별한 인테리어", name: "Unique Interiors", widget: "list", field: {label: "이미지 URL", name: "url", widget: "image"}}
+              - {label: "테라스 & 야외", name: "Terrace & Outdoor", widget: "list", field: {label: "이미지 URL", name: "url", widget: "image"}}
+              - {label: "바리스타 추천", name: "From Our Baristas", widget: "list", field: {label: "이미지 URL", name: "url", widget: "image"}}
+              - {label: "더 많은 순간들", name: "More Moments", widget: "list", field: {label: "이미지 URL", name: "url", widget: "image"}}
