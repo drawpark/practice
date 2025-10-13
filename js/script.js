@@ -123,27 +123,16 @@ function setupHeaderAndMenu() {
 function populateContent() {
     const heroSection = document.querySelector("#hero-section .sticky");
     if(heroSection) {
-        // [수정] 모바일에서는 비디오를 로드하지 않도록 gsap.matchMedia를 사용합니다.
-        gsap.matchMedia().add({
-            isDesktop: `(min-width: 768px)`,
-            isMobile: `(max-width: 767px)`
-        }, (context) => {
-            let { isDesktop } = context.conditions;
-            if(isDesktop) {
-                const video = document.createElement('video');
-                video.id = 'hero-video';
-                video.src = 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4';
-                video.autoplay = true;
-                video.loop = true;
-                video.muted = true;
-                video.playsInline = true;
-                video.className = 'absolute top-0 left-0 w-full h-full object-cover -z-10 opacity-50';
-                heroSection.prepend(video);
-            } else {
-                // [추가] 모바일에서는 정적인 배경 이미지를 설정할 수 있습니다.
-                // 예: heroSection.style.backgroundImage = 'url(your-fallback-image.jpg)';
-            }
-        });
+        // [수정] 모바일/데스크톱 구분 없이 비디오를 항상 로드합니다.
+        const video = document.createElement('video');
+        video.id = 'hero-video';
+        video.src = 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4';
+        video.autoplay = true;
+        video.loop = true;
+        video.muted = true;
+        video.playsInline = true;
+        video.className = 'absolute top-0 left-0 w-full h-full object-cover -z-10 opacity-50';
+        heroSection.prepend(video);
     }
 
     const cardStack = document.querySelector("#card-stack");
@@ -239,9 +228,10 @@ function setupAnimations() {
                     pin: true,
                 }
             });
-            if (isDesktop) { // 데스크톱에서만 비디오 투명도 조절
-                 tlHero.to("#hero-video", { opacity: 0, ease: "power1.inOut" }, 0);
-            }
+
+            // [수정] 모바일/데스크톱 구분 없이 비디오 투명도 애니메이션을 적용합니다.
+            tlHero.to("#hero-video", { opacity: 0, ease: "power1.inOut" }, 0);
+            
             cards.forEach((card, i) => {
                 const spread = isDesktop ? 80 : 30; // [수정] 모바일에서 펼쳐지는 간격 축소
                 tlHero.to(card, {
@@ -382,3 +372,4 @@ document.addEventListener("DOMContentLoaded", () => {
         ScrollTrigger.refresh();
     });
 });
+
